@@ -1,0 +1,24 @@
+C:\saxion_cmgt\courses_3q\Physics programing\Week3+\001_bouncing_squares_setup\bin\Debug\BouncingSquares.exe.config
+C:\saxion_cmgt\courses_3q\Physics programing\Week3+\001_bouncing_squares_setup\bin\Debug\BouncingSquares.exe
+C:\saxion_cmgt\courses_3q\Physics programing\Week3+\001_bouncing_squares_setup\bin\Debug\BouncingSquares.pdb
+C:\saxion_cmgt\courses_3q\Physics programing\Week3+\001_bouncing_squares_setup\obj\x86\Debug\BouncingSquares.csproj.AssemblyReference.cache
+C:\saxion_cmgt\courses_3q\Physics programing\Week3+\001_bouncing_squares_setup\obj\x86\Debug\BouncingSquares.csproj.SuggestedBindingRedirects.cache
+C:\saxion_cmgt\courses_3q\Physics programing\Week3+\001_bouncing_squares_setup\obj\x86\Debug\BouncingSquares.csproj.CoreCompileInputs.cache
+C:\saxion_cmgt\courses_3q\Physics programing\Week3+\001_bouncing_squares_setup\obj\x86\Debug\BouncingSquares.exe
+C:\saxion_cmgt\courses_3q\Physics programing\Week3+\001_bouncing_squares_setup\obj\x86\Debug\BouncingSquares.pdb
+C:\Users\Artiom\Desktop\Q3\Week3+\001_bouncing_squares_setup\bin\Debug\BouncingSquares.exe.config
+C:\Users\Artiom\Desktop\Q3\Week3+\001_bouncing_squares_setup\bin\Debug\BouncingSquares.exe
+C:\Users\Artiom\Desktop\Q3\Week3+\001_bouncing_squares_setup\bin\Debug\BouncingSquares.pdb
+C:\Users\Artiom\Desktop\Q3\Week3+\001_bouncing_squares_setup\obj\x86\Debug\BouncingSquares.csproj.AssemblyReference.cache
+C:\Users\Artiom\Desktop\Q3\Week3+\001_bouncing_squares_setup\obj\x86\Debug\BouncingSquares.csproj.SuggestedBindingRedirects.cache
+C:\Users\Artiom\Desktop\Q3\Week3+\001_bouncing_squares_setup\obj\x86\Debug\BouncingSquares.csproj.CoreCompileInputs.cache
+C:\Users\Artiom\Desktop\Q3\Week3+\001_bouncing_squares_setup\obj\x86\Debug\BouncingSquares.exe
+C:\Users\Artiom\Desktop\Q3\Week3+\001_bouncing_squares_setup\obj\x86\Debug\BouncingSquares.pdb
+C:\Users\Artiom\Desktop\Q3\Week3+\51288-Artiom-Vostrenkov\bin\Debug\BouncingSquares.exe.config
+C:\Users\Artiom\Desktop\Q3\Week3+\51288-Artiom-Vostrenkov\bin\Debug\BouncingSquares.exe
+C:\Users\Artiom\Desktop\Q3\Week3+\51288-Artiom-Vostrenkov\bin\Debug\BouncingSquares.pdb
+C:\Users\Artiom\Desktop\Q3\Week3+\51288-Artiom-Vostrenkov\obj\x86\Debug\BouncingSquares.csproj.AssemblyReference.cache
+C:\Users\Artiom\Desktop\Q3\Week3+\51288-Artiom-Vostrenkov\obj\x86\Debug\BouncingSquares.csproj.SuggestedBindingRedirects.cache
+C:\Users\Artiom\Desktop\Q3\Week3+\51288-Artiom-Vostrenkov\obj\x86\Debug\BouncingSquares.csproj.CoreCompileInputs.cache
+C:\Users\Artiom\Desktop\Q3\Week3+\51288-Artiom-Vostrenkov\obj\x86\Debug\BouncingSquares.exe
+C:\Users\Artiom\Desktop\Q3\Week3+\51288-Artiom-Vostrenkov\obj\x86\Debug\BouncingSquares.pdb

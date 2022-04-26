@@ -1,0 +1,16 @@
+C:\Users\Artiom\Desktop\Q3\Week3+\51288-Artiom-Vostrenkov\obj\x86\Debug\PhysicsGame.csproj.AssemblyReference.cache
+C:\Users\Artiom\Desktop\Q3\Week3+\51288-Artiom-Vostrenkov\obj\x86\Debug\PhysicsGame.csproj.SuggestedBindingRedirects.cache
+C:\Users\Artiom\Desktop\Q3\Week3+\51288-Artiom-Vostrenkov\obj\x86\Debug\PhysicsGame.csproj.CoreCompileInputs.cache
+C:\Users\Artiom\Desktop\Q3\Week3+\51288-Artiom-Vostrenkov\obj\x86\Debug\BouncingSquares.exe
+C:\Users\Artiom\Desktop\Q3\Week3+\51288-Artiom-Vostrenkov\obj\x86\Debug\BouncingSquares.pdb
+C:\Users\Artiom\Desktop\Q3\Week3+\51288-Artiom-Vostrenkov\bin\Debug\BouncingSquares.exe.config
+C:\Users\Artiom\Desktop\Q3\Week3+\51288-Artiom-Vostrenkov\bin\Debug\BouncingSquares.exe
+C:\Users\Artiom\Desktop\Q3\Week3+\51288-Artiom-Vostrenkov\bin\Debug\BouncingSquares.pdb
+C:\Users\Artiom\Desktop\Q3\Week3+\512880-Artiom-Vostrenkov\bin\Debug\BouncingSquares.exe.config
+C:\Users\Artiom\Desktop\Q3\Week3+\512880-Artiom-Vostrenkov\bin\Debug\BouncingSquares.exe
+C:\Users\Artiom\Desktop\Q3\Week3+\512880-Artiom-Vostrenkov\bin\Debug\BouncingSquares.pdb
+C:\Users\Artiom\Desktop\Q3\Week3+\512880-Artiom-Vostrenkov\obj\x86\Debug\PhysicsGame.csproj.AssemblyReference.cache
+C:\Users\Artiom\Desktop\Q3\Week3+\512880-Artiom-Vostrenkov\obj\x86\Debug\PhysicsGame.csproj.SuggestedBindingRedirects.cache
+C:\Users\Artiom\Desktop\Q3\Week3+\512880-Artiom-Vostrenkov\obj\x86\Debug\PhysicsGame.csproj.CoreCompileInputs.cache
+C:\Users\Artiom\Desktop\Q3\Week3+\512880-Artiom-Vostrenkov\obj\x86\Debug\BouncingSquares.exe
+C:\Users\Artiom\Desktop\Q3\Week3+\512880-Artiom-Vostrenkov\obj\x86\Debug\BouncingSquares.pdb
