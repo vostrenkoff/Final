@@ -2,6 +2,7 @@ using System;
 using GXPEngine;
 using System.Drawing;
 using System.Collections.Generic;
+using GXPEngine.UIelements;
 
 public class MyGame : Game
 {
@@ -37,6 +38,9 @@ public class MyGame : Game
 
 	public MyGame() : base(1920, 1080, false, false)
 	{
+		ES es = new ES();
+		UI ui = new UI();
+		AddChild(ui);
 		_lineContainer = new Canvas(width, height);
 		AddChild(_lineContainer);
 		
@@ -154,6 +158,11 @@ public class MyGame : Game
 	void Update () {
 		StepThroughMovers();
 		PlacingTool();
+		ES.current.Update();
+		if(Input.GetKeyDown(Key.A))
+		{
+			ES.current.GameOver();
+		}
 	}
 
 	static void Main() {

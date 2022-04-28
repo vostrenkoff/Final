@@ -166,9 +166,13 @@
     <Compile Include="CollisionInfo.cs" />
     <Compile Include="Components\LineSegment.cs" />
     <Compile Include="Components\NLineSegment.cs" />
+    <Compile Include="ES.cs" />
     <Compile Include="Gun.cs" />
     <Compile Include="MyGame.cs" />
     <Compile Include="Player.cs" />
+    <Compile Include="UI.cs" />
+    <Compile Include="UIelements\Button.cs" />
+    <Compile Include="UIelements\Text.cs" />
     <Compile Include="Vec2.cs" />
   </ItemGroup>
   <ItemGroup>
