@@ -33,7 +33,7 @@ public class MyGame : Game
 		_lineContainer.graphics.DrawLine(Pens.White, start.x, start.y, end.x, end.y);
 	}
 
-	public MyGame() : base(800, 600, false, false)
+	public MyGame() : base(1920, 1080, false, false)
 	{
 		_lineContainer = new Canvas(width, height);
 		AddChild(_lineContainer);
@@ -56,17 +56,24 @@ public class MyGame : Game
 		AddLineSegment(new NLineSegment(0, border, width, border, 0xffffffff, 1));
 		AddLineSegment(new NLineSegment(width, height - border, 0, height - border, 0xffffffff, 1));
 
-		AddLineSegment(new NLineSegment(500, _CenterPlatformBoundary, 300, _CenterPlatformBoundary, 0xffffffff, 1)); //platforms
-		AddLineSegment(new NLineSegment(300, _LeftPlatformBoundary, 100, _LeftPlatformBoundary, 0xffff0000, 2));
-		AddLineSegment(new NLineSegment(700, _RightPlatformBoundary, 500, _RightPlatformBoundary, 0xffffffff, 1));
+		//AddLineSegment(new NLineSegment(500, _CenterPlatformBoundary, 300, _CenterPlatformBoundary, 0xffffffff, 1)); //platforms
+		AddLineSegment(new NLineSegment(1000, height - 300, 1000, height-border, 0xffffffff, 1));
+		AddLineSegment(new NLineSegment(1100, height - 300, 1000, height - 300, 0xffff8000, 3));
+		AddLineSegment(new NLineSegment(1000, height - border, 900, height - border, 0xffff8000, 3));
+		AddLineSegment(new NLineSegment(1100, height - 500, 1100, height - 300, 0xffffffff, 1));
+		AddLineSegment(new NLineSegment(1500, height - 500, 1100, height - 500, 0xffffffff, 1));
+		AddLineSegment(new NLineSegment(1500, height - 300, 1500, height - 500, 0xffffffff, 1));
+		AddLineSegment(new NLineSegment(1600, height - 300, 1500, height - 300, 0xffffffff, 1));	
+		AddLineSegment(new NLineSegment(1800, height - border, 1600, height - 300, 0xffffffff, 1));	
+		
 
-		AddLineSegment(new NLineSegment(250, 100, 0, 100, 0xffffffff, 1));
-		AddLineSegment(new NLineSegment(0, 100, 100, 0, 0xffffffff, 2)); //angled lines
-		AddLineSegment(new NLineSegment(700, 0, 800, 100, 0xffffffff, 2));
+		// 1 - normal line
+		// 2 - fan
+		// 3 - jump
+		// 4 - no fall damage
 
 		LoadScene(1);
 
-		PrintInfo();
 	}
 	void AddLineSegment(NLineSegment line)
 	{

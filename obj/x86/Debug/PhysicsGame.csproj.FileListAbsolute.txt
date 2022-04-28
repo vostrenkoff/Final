@@ -19,3 +19,6 @@ C:\Users\Artiom\Documents\GitHub\Final\obj\x86\Debug\PhysicsGame.csproj.Suggeste
 C:\Users\Artiom\Documents\GitHub\Final\obj\x86\Debug\PhysicsGame.csproj.CoreCompileInputs.cache
 C:\Users\Artiom\Documents\GitHub\Final\obj\x86\Debug\BouncingSquares.exe
 C:\Users\Artiom\Documents\GitHub\Final\obj\x86\Debug\BouncingSquares.pdb
+C:\Users\Artiom\Documents\GitHub\Final\bin\Debug\BouncingSquares.exe.config
+C:\Users\Artiom\Documents\GitHub\Final\bin\Debug\BouncingSquares.exe
+C:\Users\Artiom\Documents\GitHub\Final\bin\Debug\BouncingSquares.pdb

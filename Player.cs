@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using GXPEngine;
 
@@ -44,7 +45,7 @@ public class Player : EasyDraw
 
 	const float _colorFadeSpeed = 0.025f;
 
-	public Player(int pRadius, Vec2 pPosition, Vec2 pVelocity) : base(pRadius * 2, pRadius * 2)
+	public Player(int pRadius, Vec2 pPosition, Vec2 pVelocity) : base(pRadius * 2 + 1, pRadius * 2 + 1)
 	{
 		radius = pRadius;
 		_position = pPosition;
@@ -140,19 +141,51 @@ public class Player : EasyDraw
 			float distanceTo = lineToPlayer.Dot(normalLine);
 			if (distanceTo < radius)
 			{
-				if (_position.x > line.end.x && _position.x < line.start.x && _position.y < line.start.y + 20f) // platform check
+				if (_position.x > line.end.x &&
+					_position.x < line.start.x &&
+					_position.y < line.start.y + 20f) // platform check
 				{
 					Reflect(distanceTo, line);
 					canJump = true;
 				}
-				else if (line.start.y != line.end.y || line.start.x < line.end.x) //border check
+				else if (line.start.y != line.end.y &&
+					_position.y > line.start.y &&
+					_position.y < line.end.y &&
+					_position.x < line.start.x) //border left looking side check
 				{
 					Reflect(distanceTo, line);
 					canJump = false;
 					acceleration.x = -bounciness * acceleration.x;
 				}
-				
+				else if (line.start.y != line.end.y &&
+					_position.y < line.start.y &&
+					_position.y > line.end.y &&
+					_position.x > line.start.x) //border right looking side check
+				{
+					Reflect(distanceTo, line);
+					canJump = false;
+					acceleration.x = -bounciness * acceleration.x;
+				}
+				else if (_position.x < line.end.x &&
+					_position.x > line.start.x &&
+					_position.y > line.start.y - 20f) // ceiling check
+				{
+					Reflect(distanceTo, line);
+					canJump = true;
+				}
+				 if (line.lineWidth == 3 &&
+					_position.x > line.end.x &&
+					_position.x < line.start.x &&
+					_position.y < line.start.y + 20f)
+                {
+					acceleration.y -= 2.3f;
+                }
 			}
+
+			// 1 - normal line
+			// 2 - fan
+			// 3 - jump
+			// 4 - no fall damage
 			if (line.lineWidth == 2 &&
 					_position.x > line.end.x && _position.x < line.start.x &&
 					_position.y < line.start.y + 30f && _position.y < line.end.y + 30f &&
@@ -194,8 +227,8 @@ public class Player : EasyDraw
 	{
 		Fill(200);
 		NoStroke();
-		ShapeAlign(CenterMode.Min, CenterMode.Min);
-		Rect(0, 0, width, height);
+		
+		Ellipse(radius, radius, 2 * radius, 2 * radius);
 	}
 
 	void HandleInput()
@@ -203,21 +236,24 @@ public class Player : EasyDraw
 		Console.WriteLine(canJump);
 		if (Input.GetKeyDown(Key.UP) && velocity.y > -0.8f && velocity.y < 0.8f &&canJump)
 		{
-			acceleration.y = -1.3f;
+			acceleration.y = -1.9f;
 		}
 		
-		if (Input.GetKey(Key.RIGHT) && canJump)
+		if (Input.GetKey(Key.RIGHT))
 		{
 			acceleration.x = 0.8f;
+			velocity.x *= 0.95f;
+
 		}
 		else //reduce velocity while flying
 		{
 			acceleration.x *= 0.94f;
 			velocity.x *= 0.94f;
 		}
-		if (Input.GetKey(Key.LEFT) && canJump)
+		if (Input.GetKey(Key.LEFT))
 		{
 			acceleration.x = -0.8f;
+			velocity.x *= 0.95f;
 		}
 		else //reduce velocity while flying
 		{
