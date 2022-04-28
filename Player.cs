@@ -13,7 +13,7 @@ public class Player : EasyDraw
 	public static Vec2 velocity = new Vec2(0,0);
 
 	public readonly int radius;
-
+	float offset;
 
 	bool canJump = false;
 	Gun _gun;
@@ -78,15 +78,8 @@ public class Player : EasyDraw
 	{
 		if (Input.GetKeyDown(Key.LEFT_ALT))
 		{
-			Vec2 offset = Vec2.GetUnitVectorDeg(_gun.rotation + rotation);
-			offset *= 60;
-			Vec2 bulletDirection = Vec2.GetUnitVectorDeg(_gun.rotation + rotation);
-			MyGame._moversBall.Add(new Ball(10, position + offset, bulletDirection * 30f));
-
-			foreach (Ball b in MyGame._moversBall)
-			{
-				parent.AddChild(b);
-			}
+			MyGame._switch = !MyGame._switch;
+			offset = 40f;
 		}
 	}
 	public void Step()
@@ -173,12 +166,13 @@ public class Player : EasyDraw
 					Reflect(distanceTo, line);
 					canJump = true;
 				}
-				 if (line.lineWidth == 3 &&
+				 if (line.lineWidth == 3 && //jump
 					_position.x > line.end.x &&
 					_position.x < line.start.x &&
 					_position.y < line.start.y + 20f)
                 {
-					acceleration.y -= 2.3f;
+					//Reflect(distanceTo, line);
+					velocity.y = -25.3f;
                 }
 			}
 
@@ -236,7 +230,7 @@ public class Player : EasyDraw
 		Console.WriteLine(canJump);
 		if (Input.GetKeyDown(Key.UP) && velocity.y > -0.8f && velocity.y < 0.8f &&canJump)
 		{
-			acceleration.y = -1.9f;
+			acceleration.y = -1.3f;
 		}
 		
 		if (Input.GetKey(Key.RIGHT))
@@ -261,9 +255,27 @@ public class Player : EasyDraw
 			velocity.x *= 0.94f;
 		}
 
-		
-		
-		
-		
+		foreach (NLineSegment line in MyGame.lines)
+		{
+			if (line.lineWidth == 4)
+			{
+				if (MyGame._switch)
+				{
+					line.start.y -= offset;
+					line.end.y -= offset;
+				}
+				else
+				{
+					line.start.y += offset;
+					line.end.y += offset;
+				}
+			}
+		}
+		if(offset != 0)
+        {
+			offset -= 10f;
+        }
+
+
 	}
 }

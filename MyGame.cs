@@ -10,15 +10,17 @@ public class MyGame : Game
 	float _LeftPlatformBoundary = 0;
 	float _RightPlatformBoundary = 0;
 
+	float rad = 25f;
+
 	Canvas _lineContainer = null;
 
 	public static List<Ball> _moversBall;
 	public static List<NLineSegment> lines;
 	public static List<Player> _moversPlayer;
-	
 
+	public static bool _switch = false;
+	public static bool placingTool = false;
 	
-
 
 	public Player GetMoverPlayer(int index)
 	{
@@ -50,7 +52,6 @@ public class MyGame : Game
 		_moversBall = new List<Ball>();
 		lines = new List<NLineSegment>();
 
-
 		AddLineSegment(new NLineSegment(border, height, border, 0, 0xffffffff, 2)); // borders
 		AddLineSegment(new NLineSegment(width - border, 0, width - border, height, 0xffffffff, 1));
 		AddLineSegment(new NLineSegment(0, border, width, border, 0xffffffff, 1));
@@ -59,23 +60,36 @@ public class MyGame : Game
 		//AddLineSegment(new NLineSegment(500, _CenterPlatformBoundary, 300, _CenterPlatformBoundary, 0xffffffff, 1)); //platforms
 		AddLineSegment(new NLineSegment(1000, height - 300, 1000, height-border, 0xffffffff, 1));
 		AddLineSegment(new NLineSegment(1100, height - 300, 1000, height - 300, 0xffff8000, 3));
-		AddLineSegment(new NLineSegment(1000, height - border, 900, height - border, 0xffff8000, 3));
+		AddLineSegment(new NLineSegment(1000, height - 15, 900, height - 15, 0xffff8000, 3));
 		AddLineSegment(new NLineSegment(1100, height - 500, 1100, height - 300, 0xffffffff, 1));
 		AddLineSegment(new NLineSegment(1500, height - 500, 1100, height - 500, 0xffffffff, 1));
 		AddLineSegment(new NLineSegment(1500, height - 300, 1500, height - 500, 0xffffffff, 1));
 		AddLineSegment(new NLineSegment(1600, height - 300, 1500, height - 300, 0xffffffff, 1));	
 		AddLineSegment(new NLineSegment(1800, height - border, 1600, height - 300, 0xffffffff, 1));	
 		
+		GenerateBlock(500, 500, 25f);
 
 		// 1 - normal line
 		// 2 - fan
 		// 3 - jump
-		// 4 - no fall damage
+		// 4 - block
+		AddLineSegment(new NLineSegment(500 + rad, 500 - rad, 500 - rad, 500 - rad, 0xffff8001, 4));
+		AddLineSegment(new NLineSegment(500 - rad, 500 - rad, 500 - rad, 500 + rad, 0xffff8002, 4));
+		AddLineSegment(new NLineSegment(500 + rad, 500 + rad, 500 + rad, 500 - rad, 0xffff8003, 4));
+		AddLineSegment(new NLineSegment(500 - rad, 500 + rad, 500 + rad, 500 + rad, 0xffff8004, 4));
 
 		LoadScene(1);
 
 	}
-	void AddLineSegment(NLineSegment line)
+	public void GenerateBlock(float x, float y, float rad)
+    {
+		AddLineSegment(new NLineSegment(x + rad, y - rad, x - rad, y - rad, 0xffffffff, 4));
+		AddLineSegment(new NLineSegment(x - rad, y - rad, x - rad, y + rad, 0xffffffff, 4));
+		AddLineSegment(new NLineSegment(x + rad, y + rad, x + rad, y - rad, 0xffffffff, 4));
+		AddLineSegment(new NLineSegment(x - rad, y + rad, x + rad, y + rad, 0xffffffff, 4));
+
+	}
+	public void AddLineSegment(NLineSegment line)
 	{
 		AddChild(line);
 		lines.Add(line);
@@ -116,8 +130,6 @@ public class MyGame : Game
 
 	}
 
-	
-
 	 void StepThroughMovers() {
 		
 			foreach (Player mover in _moversPlayer)
@@ -133,9 +145,71 @@ public class MyGame : Game
 
 	void Update () {
 		StepThroughMovers();
+		PlacingTool();
 	}
 
 	static void Main() {
 		new MyGame().Start();
 	}
+	void PlacingTool()
+    {
+		if (Input.GetKeyDown(Key.SPACE))
+		{
+			placingTool = !placingTool;
+		}
+			float mx = Input.mouseX;
+			float my = Input.mouseY;
+			float rad = 25f;
+        if (placingTool) { 
+			foreach (NLineSegment line in lines) {
+				if (line.color == 0xffff8001) {
+					line.start.x = mx + rad;
+					line.start.y = my - rad;
+					line.end.x = mx - rad;
+					line.end.y = my - rad;
+				}
+				if (line.color == 0xffff8002)
+				{
+					line.start.x = mx - rad;
+					line.start.y = my - rad;
+					line.end.x = mx - rad;
+					line.end.y = my + rad;
+				}
+				if (line.color == 0xffff8003)
+				{
+					line.start.x = mx + rad;
+					line.start.y = my + rad;
+					line.end.x = mx + rad;
+					line.end.y = my - rad;
+				}
+				if (line.color == 0xffff8004)
+				{
+					line.start.x = mx - rad;
+					line.start.y = my + rad;
+					line.end.x = mx + rad;
+					line.end.y = my + rad;
+				}
+			}
+		}
+        else
+        {
+			foreach (NLineSegment line in lines)
+			{
+				if (line.color == 0xffff8001 || line.color == 0xffff8002 || line.color == 0xffff8003 || line.color == 0xffff8004)
+				{
+					line.start.x = 0;
+					line.start.y = 0;
+					line.end.x = 0;
+					line.end.y = 0;
+				}
+				
+			}
+		}
+
+		if (Input.GetKeyDown(Key.LEFT_CTRL) && placingTool)
+			{
+				GenerateBlock(mx, my, 30f);
+			}
+        
+    }
 }
