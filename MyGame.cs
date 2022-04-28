@@ -18,8 +18,8 @@ public class MyGame : Game
 	public static List<NLineSegment> lines;
 	public static List<Player> _moversPlayer;
 
-	public static bool _switch = false;
-	public static bool placingTool = false;
+	public static bool _switch = true;
+	public static int placingTool = 0;
 	
 
 	public Player GetMoverPlayer(int index)
@@ -64,19 +64,27 @@ public class MyGame : Game
 		AddLineSegment(new NLineSegment(1100, height - 500, 1100, height - 300, 0xffffffff, 1));
 		AddLineSegment(new NLineSegment(1500, height - 500, 1100, height - 500, 0xffffffff, 1));
 		AddLineSegment(new NLineSegment(1500, height - 300, 1500, height - 500, 0xffffffff, 1));
-		AddLineSegment(new NLineSegment(1600, height - 300, 1500, height - 300, 0xffffffff, 1));	
-		AddLineSegment(new NLineSegment(1800, height - border, 1600, height - 300, 0xffffffff, 1));	
-		
-		GenerateBlock(500, 500, 25f);
+		AddLineSegment(new NLineSegment(1600, height - 300, 1500, height - 300, 0xffff2000, 5));	
+		AddLineSegment(new NLineSegment(1800, height - border, 1600, height - 300, 0xffffffff, 1));
+
+		GenerateBlock(1129, 451, 25f);
+		GenerateBlock(1470, 451, 25f);
+		GenerateBlock(1296, 551, 25f);
 
 		// 1 - normal line
-		// 2 - fan
+		// 2 - 
 		// 3 - jump
 		// 4 - block
+		// 5 - fan
+
+		//block tool
 		AddLineSegment(new NLineSegment(500 + rad, 500 - rad, 500 - rad, 500 - rad, 0xffff8001, 4));
 		AddLineSegment(new NLineSegment(500 - rad, 500 - rad, 500 - rad, 500 + rad, 0xffff8002, 4));
 		AddLineSegment(new NLineSegment(500 + rad, 500 + rad, 500 + rad, 500 - rad, 0xffff8003, 4));
 		AddLineSegment(new NLineSegment(500 - rad, 500 + rad, 500 + rad, 500 + rad, 0xffff8004, 4));
+
+		//obsticles
+
 
 		LoadScene(1);
 
@@ -155,12 +163,14 @@ public class MyGame : Game
     {
 		if (Input.GetKeyDown(Key.SPACE))
 		{
-			placingTool = !placingTool;
+			placingTool += 1;
+			if (placingTool == 3)
+				placingTool = 0;
 		}
 			float mx = Input.mouseX;
 			float my = Input.mouseY;
 			float rad = 25f;
-        if (placingTool) { 
+        if (placingTool == 1) { 
 			foreach (NLineSegment line in lines) {
 				if (line.color == 0xffff8001) {
 					line.start.x = mx + rad;
@@ -205,11 +215,17 @@ public class MyGame : Game
 				
 			}
 		}
+		if(placingTool == 2)
+        {
 
-		if (Input.GetKeyDown(Key.LEFT_CTRL) && placingTool)
+        }
+
+		if (Input.GetKeyDown(Key.LEFT_CTRL) && placingTool == 1)
 			{
-				GenerateBlock(mx, my, 30f);
+				GenerateBlock(mx, my, 25f);
+			Console.WriteLine(mx + " " + my);
 			}
-        
-    }
+		
+
+	}
 }

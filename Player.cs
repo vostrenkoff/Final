@@ -180,12 +180,12 @@ public class Player : EasyDraw
 			// 2 - fan
 			// 3 - jump
 			// 4 - no fall damage
-			if (line.lineWidth == 2 &&
+			if (line.lineWidth == 5 &&
 					_position.x > line.end.x && _position.x < line.start.x &&
 					_position.y < line.start.y + 30f && _position.y < line.end.y + 30f &&
 					_position.y > line.start.y - 300f && _position.y > line.end.y - 300f) //wind force left
 			{
-				velocity.y -= Mass * 0.0005f;
+				velocity.y -= Mass * 0.0003f;
 				SetFadeColor(1, 0.2f, 0.2f);
 				UpdateScreenPosition();
 			}
@@ -227,7 +227,6 @@ public class Player : EasyDraw
 
 	void HandleInput()
 	{
-		Console.WriteLine(canJump);
 		if (Input.GetKeyDown(Key.UP) && velocity.y > -0.8f && velocity.y < 0.8f &&canJump)
 		{
 			acceleration.y = -1.3f;

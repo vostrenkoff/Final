@@ -26,7 +26,7 @@ namespace GXPEngine
 		public NLineSegment(Vec2 pStart, Vec2 pEnd, uint pColor = 0xffffffff, uint pLineWidth = 1)
 			: base(pStart, pEnd, pColor, pLineWidth)
 		{
-			_normal = new Arrow(new Vec2(0, 0), new Vec2(0, 0), 40, 0xffff0000, 1);
+			_normal = new Arrow(new Vec2(0, 0), new Vec2(0, 0), 40, 0x00000000, 1);
 			AddChild(_normal);
 		}
 
