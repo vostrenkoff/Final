@@ -13,7 +13,7 @@ public class MyGame : Game
 
 	float rad = 25f;
 
-	Canvas _lineContainer = null;
+	
 
 	public static List<Ball> _moversBall;
 	public static List<NLineSegment> lines;
@@ -33,7 +33,7 @@ public class MyGame : Game
 	}
 
 	public void DrawLine(Vec2 start, Vec2 end) {
-		_lineContainer.graphics.DrawLine(Pens.White, start.x, start.y, end.x, end.y);
+		//_lineContainer.graphics.DrawLine(Pens.White, start.x, start.y, end.x, end.y);
 	}
 
 	public MyGame() : base(1920, 1080, false, false)
@@ -41,8 +41,7 @@ public class MyGame : Game
 		ES es = new ES();
 		UI ui = new UI();
 		AddChild(ui);
-		_lineContainer = new Canvas(width, height);
-		AddChild(_lineContainer);
+		
 		
 		targetFps = 60;
 
@@ -107,6 +106,8 @@ public class MyGame : Game
 		//jump tool
 		AddLineSegment(new NLineSegment(500 + rad, 500 - rad, 500 - rad, 500 - rad, 0xffff8005, 3));
 
+		//fan tool
+		AddLineSegment(new NLineSegment(500 + rad, 500 - rad, 500 - rad, 500 - rad, 0xffff2001, 5));
 
 		LoadScene(1);
 
@@ -122,6 +123,11 @@ public class MyGame : Game
 	public void GenerateJump(float x, float y, float rad)
 	{
 		AddLineSegment(new NLineSegment(x + rad, y + rad, x - rad, y + rad, 0xffff8000, 3));
+
+	}
+	public void GenerateFan(float x, float y, float rad)
+	{
+		AddLineSegment(new NLineSegment(x + rad, y + rad, x - rad, y + rad, 0xffff2000, 5));
 
 	}
 	public void AddLineSegment(NLineSegment line)
@@ -197,7 +203,7 @@ public class MyGame : Game
 		if (Input.GetKeyDown(Key.SPACE))
 		{
 			placingTool += 1;
-			if (placingTool == 3)
+			if (placingTool == 4)
 				placingTool = 0;
 		}
 			float mx = Input.mouseX;
@@ -276,10 +282,34 @@ public class MyGame : Game
 				
 			}
 		}
-		if(placingTool == 2)
-        {
+		if (placingTool == 3)
+		{
+			foreach (NLineSegment line in lines)
+			{
 
-        }
+				if (line.color == 0xffff2001)
+				{
+					line.start.x = mx - rad;
+					line.start.y = my + rad;
+					line.end.x = mx + rad;
+					line.end.y = my + rad;
+				}
+			}
+		}
+		else
+		{
+			foreach (NLineSegment line in lines)
+			{
+				if (line.color == 0xffff2001)
+				{
+					line.start.x = 0;
+					line.start.y = 0;
+					line.end.x = 0;
+					line.end.y = 0;
+				}
+
+			}
+		}
 
 		if (Input.GetKeyDown(Key.LEFT_CTRL) && placingTool == 1)
 			{
@@ -292,6 +322,10 @@ public class MyGame : Game
 			GenerateJump(mx, my, 25f);
 			Console.WriteLine(mx + " " + my);
 		}
-
+		if (Input.GetKeyDown(Key.LEFT_CTRL) && placingTool == 3)
+		{
+			GenerateFan(mx, my, 25f);
+			Console.WriteLine(mx + " " + my);
+		}
 	}
 }
