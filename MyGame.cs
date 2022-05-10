@@ -81,13 +81,31 @@ public class MyGame : Game
 		// 4 - block
 		// 5 - fan
 
+
+		// 11-yellow
+		// 12 - blue
+		// 13 - red
+		//
+		//
+		//
+		//
+
+
+
+		AddLineSegment(new NLineSegment(300, 1070, 300, 777, 0xffffffff, 1));
+		AddLineSegment(new NLineSegment(450, 1070, 450, 777, 0xffffffff, 1));
+		AddLineSegment(new NLineSegment(300, 777, 450, 777, 0xffffffff, 1));
+
+
+
 		//block tool
 		AddLineSegment(new NLineSegment(500 + rad, 500 - rad, 500 - rad, 500 - rad, 0xffff8001, 4));
 		AddLineSegment(new NLineSegment(500 - rad, 500 - rad, 500 - rad, 500 + rad, 0xffff8002, 4));
 		AddLineSegment(new NLineSegment(500 + rad, 500 + rad, 500 + rad, 500 - rad, 0xffff8003, 4));
 		AddLineSegment(new NLineSegment(500 - rad, 500 + rad, 500 + rad, 500 + rad, 0xffff8004, 4));
 
-		//obsticles
+		//jump tool
+		AddLineSegment(new NLineSegment(500 + rad, 500 - rad, 500 - rad, 500 - rad, 0xffff8005, 3));
 
 
 		LoadScene(1);
@@ -99,6 +117,11 @@ public class MyGame : Game
 		AddLineSegment(new NLineSegment(x - rad, y - rad, x - rad, y + rad, 0xffffffff, 4));
 		AddLineSegment(new NLineSegment(x + rad, y + rad, x + rad, y - rad, 0xffffffff, 4));
 		AddLineSegment(new NLineSegment(x - rad, y + rad, x + rad, y + rad, 0xffffffff, 4));
+
+	}
+	public void GenerateJump(float x, float y, float rad)
+	{
+		AddLineSegment(new NLineSegment(x + rad, y + rad, x - rad, y + rad, 0xffff8000, 3));
 
 	}
 	public void AddLineSegment(NLineSegment line)
@@ -163,6 +186,7 @@ public class MyGame : Game
 		{
 			ES.current.GameOver();
 		}
+		Console.WriteLine(Input.mouseX + " " + Input.mouseY);
 	}
 
 	static void Main() {
@@ -210,11 +234,39 @@ public class MyGame : Game
 				}
 			}
 		}
-        else
-        {
+		else
+		{
 			foreach (NLineSegment line in lines)
 			{
 				if (line.color == 0xffff8001 || line.color == 0xffff8002 || line.color == 0xffff8003 || line.color == 0xffff8004)
+				{
+					line.start.x = 0;
+					line.start.y = 0;
+					line.end.x = 0;
+					line.end.y = 0;
+				}
+
+			}
+		}
+		if (placingTool == 2)
+		{
+			foreach (NLineSegment line in lines)
+			{
+				
+				if (line.color == 0xffff8005)
+				{
+					line.start.x = mx - rad;
+					line.start.y = my + rad;
+					line.end.x = mx + rad;
+					line.end.y = my + rad;
+				}
+			}
+		}
+		else
+        {
+			foreach (NLineSegment line in lines)
+			{
+				if (line.color == 0xffff8005)
 				{
 					line.start.x = 0;
 					line.start.y = 0;
@@ -234,7 +286,12 @@ public class MyGame : Game
 				GenerateBlock(mx, my, 25f);
 			Console.WriteLine(mx + " " + my);
 			}
-		
+
+		if (Input.GetKeyDown(Key.LEFT_CTRL) && placingTool == 2)
+		{
+			GenerateJump(mx, my, 25f);
+			Console.WriteLine(mx + " " + my);
+		}
 
 	}
 }

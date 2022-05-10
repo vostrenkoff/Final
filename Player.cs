@@ -50,13 +50,12 @@ public class Player : EasyDraw
 		radius = pRadius;
 		_position = pPosition;
 		velocity = pVelocity;
-
+		ES.current.onGameOver += Sdohni;
 		SetOrigin(radius, radius);
 		Draw();
 		UpdateScreenPosition();
 		_oldPosition = new Vec2(0, 0);
 		_gun = new Gun(0, 0);
-		AddChild(_gun);
 	}
 
 	public void SetFadeColor(float pRed, float pGreen, float pBlue)
@@ -149,6 +148,8 @@ public class Player : EasyDraw
 					Reflect(distanceTo, line);
 					canJump = false;
 					acceleration.x = -bounciness * acceleration.x;
+					if (line.lineWidth == 4)
+						ES.current.GameOver();
 				}
 				else if (line.start.y != line.end.y &&
 					_position.y < line.start.y &&
@@ -158,6 +159,8 @@ public class Player : EasyDraw
 					Reflect(distanceTo, line);
 					canJump = false;
 					acceleration.x = -bounciness * acceleration.x;
+					if (line.lineWidth == 4)
+						ES.current.GameOver();
 				}
 				else if (_position.x < line.end.x &&
 					_position.x > line.start.x &&
@@ -165,6 +168,8 @@ public class Player : EasyDraw
 				{
 					Reflect(distanceTo, line);
 					canJump = true;
+					if (line.lineWidth == 4)
+						ES.current.GameOver();
 				}
 				 if (line.lineWidth == 3 && //jump
 					_position.x > line.end.x &&
@@ -174,6 +179,12 @@ public class Player : EasyDraw
 					//Reflect(distanceTo, line);
 					velocity.y = -25.3f;
                 }
+				 
+
+
+
+				//ES.current.GameOver();
+
 			}
 
 			// 1 - normal line
@@ -192,7 +203,10 @@ public class Player : EasyDraw
 		}
 	}
 
-
+	private void Sdohni()
+    {
+		this.Destroy();
+    }
 	public void Reflect(float distanceto, NLineSegment line)
 	{
 		Vec2 POI;
@@ -229,7 +243,7 @@ public class Player : EasyDraw
 	{
 		if (Input.GetKeyDown(Key.UP) && velocity.y > -0.8f && velocity.y < 0.8f &&canJump)
 		{
-			acceleration.y = -1.3f;
+			//acceleration.y = -1.3f;
 		}
 		
 		if (Input.GetKey(Key.RIGHT))
