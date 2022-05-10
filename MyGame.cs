@@ -7,9 +7,6 @@ using GXPEngine.UIelements;
 public class MyGame : Game
 {
 
-	float _CenterPlatformBoundary = 0;
-	float _LeftPlatformBoundary = 0;
-	float _RightPlatformBoundary = 0;
 
 	float rad = 25f;
 
@@ -48,9 +45,6 @@ public class MyGame : Game
 
 		float border = 10;
 
-		_CenterPlatformBoundary = 400f;
-		_RightPlatformBoundary = 200f;
-		_LeftPlatformBoundary = 500f;
 
 		_moversPlayer = new List<Player>();
 		_moversBall = new List<Ball>();
