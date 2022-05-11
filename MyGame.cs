@@ -9,8 +9,8 @@ public class MyGame : Game
 
 
 	float rad = 25f;
+	float border = 10;
 
-	
 
 	public static List<Ball> _moversBall;
 	public static List<NLineSegment> lines;
@@ -42,12 +42,18 @@ public class MyGame : Game
 		
 		targetFps = 60;
 
-		float border = 10;
+		
 
 
 		_moversPlayer = new List<Player>();
 		_moversBall = new List<Ball>();
 		lines = new List<NLineSegment>();
+
+		LoadScene(1);
+
+	}
+	public void Level1Lines()
+	{
 
 		AddLineSegment(new NLineSegment(border, height, border, 0, 0xffffffff, 2)); // borders
 		AddLineSegment(new NLineSegment(width - border, 0, width - border, height, 0xffffffff, 1));
@@ -55,13 +61,13 @@ public class MyGame : Game
 		AddLineSegment(new NLineSegment(width, height - border, 0, height - border, 0xffffffff, 1));
 
 		//AddLineSegment(new NLineSegment(500, _CenterPlatformBoundary, 300, _CenterPlatformBoundary, 0xffffffff, 1)); //platforms
-		AddLineSegment(new NLineSegment(1000, height - 300, 1000, height-border, 0xffffffff, 1));
+		AddLineSegment(new NLineSegment(1000, height - 300, 1000, height - border, 0xffffffff, 1));
 		AddLineSegment(new NLineSegment(1100, height - 300, 1000, height - 300, 0xffff8000, 3));
 		AddLineSegment(new NLineSegment(1000, height - 15, 900, height - 15, 0xffff8000, 3));
 		AddLineSegment(new NLineSegment(1100, height - 500, 1100, height - 300, 0xffffffff, 1));
 		AddLineSegment(new NLineSegment(1500, height - 500, 1100, height - 500, 0xffffffff, 1));
 		AddLineSegment(new NLineSegment(1500, height - 300, 1500, height - 500, 0xffffffff, 1));
-		AddLineSegment(new NLineSegment(1600, height - 300, 1500, height - 300, 0xffff2000, 5));	
+		AddLineSegment(new NLineSegment(1600, height - 300, 1500, height - 300, 0xffff2000, 5));
 		AddLineSegment(new NLineSegment(1800, height - border, 1600, height - 300, 0xffffffff, 1));
 
 		GenerateBlock(1129, 451, 25f);
@@ -103,8 +109,18 @@ public class MyGame : Game
 		//fan tool
 		AddLineSegment(new NLineSegment(500 + rad, 500 - rad, 500 - rad, 500 - rad, 0xffff2001, 5));
 
-		LoadScene(1);
+	}
+	public void Level2Lines()
+	{
+		AddLineSegment(new NLineSegment(border, height, border, 0, 0xffffffff, 2)); // borders
+		AddLineSegment(new NLineSegment(width - border, 0, width - border, height, 0xffffffff, 1));
+		AddLineSegment(new NLineSegment(0, border, width, border, 0xffffffff, 1));
+		AddLineSegment(new NLineSegment(width, height - border, 0, height - border, 0xffffffff, 1));
 
+		//AddLineSegment(new NLineSegment(500, _CenterPlatformBoundary, 300, _CenterPlatformBoundary, 0xffffffff, 1)); //platforms
+		AddLineSegment(new NLineSegment(1000, height - 300, 1000, height - border, 0xffffffff, 1));
+		AddLineSegment(new NLineSegment(1100, height - 300, 1000, height - 300, 0xffff8000, 3));
+		AddLineSegment(new NLineSegment(1000, height - 15, 900, height - 15, 0xffff8000, 3));
 	}
 	public void GenerateBlock(float x, float y, float rad)
     {
@@ -126,7 +142,6 @@ public class MyGame : Game
 	}
 	public void AddLineSegment(NLineSegment line)
 	{
-		AddChild(line);
 		lines.Add(line);
 	}
 	public NLineSegment GetLine(int i) => lines[i];
@@ -144,10 +159,20 @@ public class MyGame : Game
 			mover.Destroy();
 		}
 		_moversBall.Clear();
+		foreach (NLineSegment lineSegment in lines)
+		{
+			lineSegment.Destroy();
+		}
+		lines.Clear();
 
 		// create new scene:
 		switch (sceneNumber) {
 			case 1:
+				Level1Lines();
+				_moversPlayer.Add(new Player(20, new Vec2(width / 2, height / 2), new Vec2(0, 0)));
+				break;
+			case 2:
+				Level2Lines();
 				_moversPlayer.Add(new Player(20, new Vec2(width / 2, height / 2), new Vec2(0, 0)));
 				break;
 		}
@@ -158,6 +183,10 @@ public class MyGame : Game
 			AddChild(b);
 		}
 		foreach (Ball b in _moversBall)
+		{
+			AddChild(b);
+		}
+		foreach (NLineSegment b in lines)
 		{
 			AddChild(b);
 		}
@@ -184,7 +213,8 @@ public class MyGame : Game
 		ES.current.Update();
 		if(Input.GetKeyDown(Key.A))
 		{
-			ES.current.GameOver();
+			LoadScene(2);
+			//ES.current.GameOver();
 		}
 		Console.WriteLine(Input.mouseX + " " + Input.mouseY);
 	}

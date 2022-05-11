@@ -29,3 +29,4 @@ C:\Users\mined\Documents\GitHub\Final\obj\x86\Debug\PhysicsGame.csproj.Suggested
 C:\Users\mined\Documents\GitHub\Final\obj\x86\Debug\PhysicsGame.csproj.CoreCompileInputs.cache
 C:\Users\mined\Documents\GitHub\Final\obj\x86\Debug\BouncingSquares.exe
 C:\Users\mined\Documents\GitHub\Final\obj\x86\Debug\BouncingSquares.pdb
+C:\Users\mined\Documents\GitHub\Final\obj\x86\Debug\PhysicsGame.csproj.AssemblyReference.cache
