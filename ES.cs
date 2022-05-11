@@ -20,6 +20,8 @@ namespace GXPEngine
 		public event Action onUpdate;
 		public event Action onGameOver;
 		public event Action onRestart;
+		public event Action onStartGame;
+		public event Action onExit;
 
 		public void Update()
 		{
@@ -32,6 +34,14 @@ namespace GXPEngine
 		public void Restart()
 		{
 			onRestart?.Invoke();
+		}
+		public void StartGame()
+		{
+			onStartGame?.Invoke();
+		}
+		public void Exit()
+		{
+			onExit?.Invoke();
 		}
 	}
 }

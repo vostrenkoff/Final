@@ -40,6 +40,7 @@ public class MyGame : Game
 		UI ui = new UI();
 		AddChild(ui);
 		ES.current.onRestart += Restart;
+		ES.current.onStartGame += StartGame;
 		SpritePlayer sp = new SpritePlayer();
 		AddChild(sp);
 		targetFps = 60;
@@ -52,8 +53,11 @@ public class MyGame : Game
 		lines = new List<NLineSegment>();
 		_stars = new List<Star>();
 
-		LoadScene(1);
 
+	}
+	private void StartGame()
+	{
+		LoadScene(1);
 	}
 	public void Level1Lines()
 	{

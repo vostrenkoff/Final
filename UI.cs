@@ -12,14 +12,20 @@ namespace GXPEngine
 		Text gameOverText;
 		Button gameOverButton;
 
+		Text menuTitle;
+		Button menuStart;
+		Button menuExit;
+		bool showStarCount = false;
 		Text starText;
 		public UI()
 		{
 			ES.current.onGameOver += ShowGameOverMenu;
 			ES.current.onRestart += HideGameOverMenu;
 			ES.current.onUpdate += Update;
+			ES.current.onStartGame += HideMenu;
 			starText = new Text(500, 500, 1700, 300, "", 30);
 			AddChild(starText);
+			ShowMenu();
 		}
 		private void ShowGameOverMenu()
 		{
@@ -30,16 +36,40 @@ namespace GXPEngine
 		}
 		private void HideGameOverMenu()
 		{
-			Console.WriteLine(GetChildCount());
-			Console.WriteLine("ddd");
 			RemoveChild(gameOverButton);
 			RemoveChild(gameOverText);
 			gameOverButton.Destroy();
 			gameOverText.Destroy();
+			showStarCount = true;
+		}
+		private void ShowMenu()
+		{
+			menuTitle = new Text(500, 500, 1920 / 2, 280, "Ballls game", 60);
+			menuStart = new Button(1920 / 2, 500, "colors.png", "Start", ES.current.StartGame);
+			menuExit = new Button(1920 / 2, 800, "colors.png", "Exit", ES.current.Exit);
+			AddChild(menuTitle);
+			AddChild(menuStart);
+			AddChild(menuExit);
+		}
+		private void HideMenu()
+		{
+			RemoveChild(menuTitle);
+			RemoveChild(menuStart);
+			RemoveChild(menuExit);
+			menuTitle.Destroy();
+			menuStart.Destroy();
+			menuExit.Destroy();
 		}
 		private void Update()
 		{
-			starText.UpdateText("Stars : " + ES.stars);
+			if (showStarCount)
+			{
+				starText.UpdateText("Stars : " + ES.stars);
+			}
+			else
+			{
+				starText.Clear(0, 0, 0);
+			}
 		}
 	}
 }
