@@ -6,7 +6,7 @@ using GXPEngine.UIelements;
 
 public class MyGame : Game
 {
-
+	
 
 	float rad = 25f;
 	float border = 10;
@@ -38,7 +38,7 @@ public class MyGame : Game
 		ES es = new ES();
 		UI ui = new UI();
 		AddChild(ui);
-		
+		ES.current.onRestart += Restart;
 		
 		targetFps = 60;
 
@@ -154,6 +154,8 @@ public class MyGame : Game
 	public NLineSegment GetLine(int i) => lines[i];
 	public int GetLineCount() => lines.Count;
 	void LoadScene(int sceneNumber) {
+
+		ES.currentLevel = sceneNumber;
 
 		foreach (Player mover in _moversPlayer)
 		{
@@ -358,5 +360,9 @@ public class MyGame : Game
 			GenerateFan(mx, my, 25f);
 			Console.WriteLine(mx + "-" + my);
 		}
+	}
+	private void Restart()
+	{
+		LoadScene(ES.currentLevel);
 	}
 }

@@ -14,6 +14,8 @@ namespace GXPEngine
 			current = this;
 		}
 
+		public static int currentLevel;
+
 		public event Action onUpdate;
 		public event Action onGameOver;
 		public event Action onRestart;
