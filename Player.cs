@@ -15,6 +15,8 @@ public class Player : EasyDraw
 	public readonly int radius;
 	float offset;
 
+	public static int color = 0;
+
 	bool canJump = false;
 	Gun _gun;
 
@@ -75,7 +77,7 @@ public class Player : EasyDraw
 	}
 	void Shoot()
 	{
-		if (Input.GetKeyDown(Key.LEFT_ALT))
+		if (Input.GetKeyDown(Key.LEFT_ALT) && color == 2)
 		{
 			MyGame._switch = !MyGame._switch;
 			offset = 40f;
@@ -107,36 +109,68 @@ public class Player : EasyDraw
 	}
 	void UpdateColor()
 	{
-		if (_red < 1)
-		{
-			_red = Mathf.Min(1, _red + _colorFadeSpeed);
-		}
-		if (_green < 1)
-		{
-			_green = Mathf.Min(1, _green + _colorFadeSpeed);
-		}
-		if (_blue < 1)
-		{
-			_blue = Mathf.Min(1, _blue + _colorFadeSpeed);
-		}
-		SetColor(_red, _green, _blue);
+		Console.WriteLine(color);
+		if(color == 0)
+			SetColor(_red, _green, _blue);
+		if(color == 1)
+			SetColor(200,200, 0);
+		if(color == 2)
+			SetColor(0, 200, 0);
+		if (color == 3)
+			SetColor(0, 42, 42);
 	}
 	void CheckBoundaryCollisions()
 	{
 		MyGame myGame = (MyGame)game;
 
-
+		//Console.WriteLine(velocity.y);
 		foreach (NLineSegment line in MyGame.lines)
 		{
 			Vec2 lineToPlayer = _position - line.start;
 			Vec2 normalLine = (line.end - line.start).Normal();
 			float distanceTo = lineToPlayer.Dot(normalLine);
-			if (distanceTo < radius)
+			if (distanceTo < radius &&  line.color != 0xffff8001
+				 && line.color != 0xffff8002
+				  && line.color != 0xffff8003
+				   && line.color != 0xffff8004
+					&& line.color != 0xffff8005
+					 && line.color != 0xffff2001)
 			{
+				//colors
+				if (line.lineWidth == 11 && //
+					_position.x > line.end.x &&
+					_position.x < line.start.x &&
+					_position.y < line.start.y + 20f)
+				{
+					Console.WriteLine("yellow");
+					color = 1;
+				}
+				if (line.lineWidth == 12 && //
+					_position.x > line.end.x &&
+					_position.x < line.start.x &&
+					_position.y < line.start.y + 20f)
+				{
+					Console.WriteLine("blue");
+					color = 2;
+				}
+				if (line.lineWidth == 13 && //
+					_position.x > line.end.x &&
+					_position.x < line.start.x &&
+					_position.y < line.start.y + 20f)
+				{
+					Console.WriteLine("red");
+					color = 3;
+				}
+
+
+
+
 				if (_position.x > line.end.x &&
 					_position.x < line.start.x &&
 					_position.y < line.start.y + 20f) // platform check
 				{
+					if (velocity.y > 20)
+						ES.current.GameOver();
 					Reflect(distanceTo, line);
 					canJump = true;
 				}
@@ -148,8 +182,7 @@ public class Player : EasyDraw
 					Reflect(distanceTo, line);
 					canJump = false;
 					acceleration.x = -bounciness * acceleration.x;
-					if (line.lineWidth == 4)
-						ES.current.GameOver();
+					
 				}
 				else if (line.start.y != line.end.y &&
 					_position.y < line.start.y &&

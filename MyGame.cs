@@ -70,8 +70,7 @@ public class MyGame : Game
 		AddLineSegment(new NLineSegment(1600, height - 300, 1500, height - 300, 0xffff2000, 5));
 		AddLineSegment(new NLineSegment(1800, height - border, 1600, height - 300, 0xffffffff, 1));
 
-		GenerateBlock(1129, 451, 25f);
-		GenerateBlock(1470, 451, 25f);
+		
 		GenerateBlock(1296, 551, 25f);
 
 		// 1 - normal line
@@ -91,23 +90,26 @@ public class MyGame : Game
 
 
 
-		AddLineSegment(new NLineSegment(300, 1070, 300, 777, 0xffffffff, 1));
+		AddLineSegment(new NLineSegment( 300, 777, 300, 1070,0xffffffff, 1));
 		AddLineSegment(new NLineSegment(450, 1070, 450, 777, 0xffffffff, 1));
-		AddLineSegment(new NLineSegment(300, 777, 450, 777, 0xffffffff, 1));
+		AddLineSegment(new NLineSegment( 450, 777, 300, 777, 0xffffffff, 1));
 
-
+		//colors
+		AddLineSegment(new NLineSegment( 210, 1065, 150, 1065, 0xffff9999, 11));
+		AddLineSegment(new NLineSegment( 410, 772, 350, 772, 0xffff8000, 12));
+		AddLineSegment(new NLineSegment( 660, 1065, 600, 1065, 0xffff1000, 13));
 
 		//block tool
-		AddLineSegment(new NLineSegment(500 + rad, 500 - rad, 500 - rad, 500 - rad, 0xffff8001, 4));
-		AddLineSegment(new NLineSegment(500 - rad, 500 - rad, 500 - rad, 500 + rad, 0xffff8002, 4));
-		AddLineSegment(new NLineSegment(500 + rad, 500 + rad, 500 + rad, 500 - rad, 0xffff8003, 4));
-		AddLineSegment(new NLineSegment(500 - rad, 500 + rad, 500 + rad, 500 + rad, 0xffff8004, 4));
+		AddLineSegment(new NLineSegment(500 + rad, 500 - rad, 500 - rad, 500 - rad, 0xffff8001, 1));
+		AddLineSegment(new NLineSegment(500 - rad, 500 - rad, 500 - rad, 500 + rad, 0xffff8002, 1));
+		AddLineSegment(new NLineSegment(500 + rad, 500 + rad, 500 + rad, 500 - rad, 0xffff8003, 1));
+		AddLineSegment(new NLineSegment(500 - rad, 500 + rad, 500 + rad, 500 + rad, 0xffff8004, 1));
 
 		//jump tool
-		AddLineSegment(new NLineSegment(500 + rad, 500 - rad, 500 - rad, 500 - rad, 0xffff8005, 3));
+		AddLineSegment(new NLineSegment( 500 - rad, 500 - rad, 500 + rad, 500 - rad, 0xffff8005, 1));
 
 		//fan tool
-		AddLineSegment(new NLineSegment(500 + rad, 500 - rad, 500 - rad, 500 - rad, 0xffff2001, 5));
+		AddLineSegment(new NLineSegment(500 + rad, 500 - rad, 500 - rad, 500 - rad, 0xffff2001, 1));
 
 	}
 	public void Level2Lines()
@@ -124,24 +126,29 @@ public class MyGame : Game
 	}
 	public void GenerateBlock(float x, float y, float rad)
     {
-		AddLineSegment(new NLineSegment(x + rad, y - rad, x - rad, y - rad, 0xffffffff, 4));
-		AddLineSegment(new NLineSegment(x - rad, y - rad, x - rad, y + rad, 0xffffffff, 4));
-		AddLineSegment(new NLineSegment(x + rad, y + rad, x + rad, y - rad, 0xffffffff, 4));
-		AddLineSegment(new NLineSegment(x - rad, y + rad, x + rad, y + rad, 0xffffffff, 4));
+		AddLineSegment(new NLineSegment(x + rad, y - rad, x - rad, y - rad, 0xffffffff, 4), true);
+		AddLineSegment(new NLineSegment(x - rad, y - rad, x - rad, y + rad, 0xffffffff, 4), true);
+		AddLineSegment(new NLineSegment(x + rad, y + rad, x + rad, y - rad, 0xffffffff, 4), true);
+		AddLineSegment(new NLineSegment(x - rad, y + rad, x + rad, y + rad, 0xffffffff, 4), true);
 
 	}
 	public void GenerateJump(float x, float y, float rad)
 	{
-		AddLineSegment(new NLineSegment(x + rad, y + rad, x - rad, y + rad, 0xffff8000, 3));
+		AddLineSegment(new NLineSegment(x + rad, y + rad, x - rad, y + rad, 0xffff8000, 3), true);
 
 	}
 	public void GenerateFan(float x, float y, float rad)
 	{
-		AddLineSegment(new NLineSegment(x + rad, y + rad, x - rad, y + rad, 0xffff2000, 5));
+		AddLineSegment(new NLineSegment(x + rad, y + rad, x - rad, y + rad, 0xffff2000, 5), true);
 
 	}
 	public void AddLineSegment(NLineSegment line)
 	{
+		lines.Add(line);
+	}
+	public void AddLineSegment(NLineSegment line, bool spawnNow)
+	{
+		AddChild(line);
 		lines.Add(line);
 	}
 	public NLineSegment GetLine(int i) => lines[i];
@@ -169,7 +176,7 @@ public class MyGame : Game
 		switch (sceneNumber) {
 			case 1:
 				Level1Lines();
-				_moversPlayer.Add(new Player(20, new Vec2(width / 2, height / 2), new Vec2(0, 0)));
+				_moversPlayer.Add(new Player(20, new Vec2(100, 1000), new Vec2(0, 0)));
 				break;
 			case 2:
 				Level2Lines();
@@ -338,18 +345,18 @@ public class MyGame : Game
 		if (Input.GetKeyDown(Key.LEFT_CTRL) && placingTool == 1)
 			{
 				GenerateBlock(mx, my, 25f);
-			Console.WriteLine(mx + " " + my);
+			Console.WriteLine(mx + "-" + my);
 			}
 
 		if (Input.GetKeyDown(Key.LEFT_CTRL) && placingTool == 2)
 		{
 			GenerateJump(mx, my, 25f);
-			Console.WriteLine(mx + " " + my);
+			Console.WriteLine(mx + "-" + my);
 		}
 		if (Input.GetKeyDown(Key.LEFT_CTRL) && placingTool == 3)
 		{
 			GenerateFan(mx, my, 25f);
-			Console.WriteLine(mx + " " + my);
+			Console.WriteLine(mx + "-" + my);
 		}
 	}
 }
