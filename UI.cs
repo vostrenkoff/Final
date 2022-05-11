@@ -9,16 +9,37 @@ namespace GXPEngine
 {
 	internal class UI : GameObject
 	{
+		Text gameOverText;
+		Button gameOverButton;
+
+		Text starText;
 		public UI()
 		{
-			ES.current.onGameOver += ShowGameOverText;
+			ES.current.onGameOver += ShowGameOverMenu;
+			ES.current.onRestart += HideGameOverMenu;
+			ES.current.onUpdate += Update;
+			starText = new Text(500, 500, 1700, 300, "", 30);
+			AddChild(starText);
 		}
-		private void ShowGameOverText()
+		private void ShowGameOverMenu()
 		{
-			Text text = new Text(500, 500, 1920 / 2, 1080 / 2, "GAME OVER", 30);
-			Button button = new Button(1920 / 2, 1080 / 2 + 100, "colors.png", "Restart", ES.current.Restart);
-			AddChild(text);
-			AddChild(button);
+			gameOverText = new Text(500, 500, 1920 / 2, 1080 / 2, "GAME OVER", 30);
+			gameOverButton = new Button(1920 / 2, 1080 / 2 + 100, "colors.png", "Restart", ES.current.Restart);
+			AddChild(gameOverText);
+			AddChild(gameOverButton);
+		}
+		private void HideGameOverMenu()
+		{
+			Console.WriteLine(GetChildCount());
+			Console.WriteLine("ddd");
+			RemoveChild(gameOverButton);
+			RemoveChild(gameOverText);
+			gameOverButton.Destroy();
+			gameOverText.Destroy();
+		}
+		private void Update()
+		{
+			starText.UpdateText("Stars : " + ES.stars);
 		}
 	}
 }

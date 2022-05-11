@@ -17,5 +17,10 @@ namespace GXPEngine.UIelements
 			TextAlign(CenterMode.Center, CenterMode.Center);
 			Text(text);
 		}
+		public void UpdateText(string text)
+		{
+			Clear(0, 0, 0);
+			Text(text);
+		}
 	}
 }

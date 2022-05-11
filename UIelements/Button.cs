@@ -49,7 +49,7 @@ namespace GXPEngine.UIelements
 		}
 		private void CheckPress()
 		{
-			if(Input.GetMouseButtonUp(0)&&mouseInBounds&&framesAlive-lastFrame > 3)
+			if(Input.GetMouseButtonUp(0)&&mouseInBounds&&framesAlive-lastFrame > 10)
 			{
 				lastFrame = framesAlive;
 				buttonAction.Invoke();

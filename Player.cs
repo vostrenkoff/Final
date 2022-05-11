@@ -11,6 +11,7 @@ public class Player : EasyDraw
 	public static float bounciness = 0.4f;
 	public static Vec2 acceleration = new Vec2(0, 0);
 	public static Vec2 velocity = new Vec2(0,0);
+	public static Vec2 globalPos = new Vec2(0,0);
 
 	public readonly int radius;
 	float offset;
@@ -74,6 +75,7 @@ public class Player : EasyDraw
 		Gizmos.DrawArrow(_position.x, _position.y, velocity.x * 10, velocity.y * 10);
 		Shoot();
 		HandleInput();
+		globalPos = position;
 	}
 	void Shoot()
 	{
@@ -109,7 +111,7 @@ public class Player : EasyDraw
 	}
 	void UpdateColor()
 	{
-		Console.WriteLine(color);
+		//Console.WriteLine(color);
 		if(color == 0)
 			SetColor(_red, _green, _blue);
 		if(color == 1)
@@ -142,7 +144,7 @@ public class Player : EasyDraw
 					_position.x < line.start.x &&
 					_position.y < line.start.y + 20f)
 				{
-					Console.WriteLine("yellow");
+					//Console.WriteLine("yellow");
 					color = 1;
 				}
 				if (line.lineWidth == 12 && //
@@ -150,7 +152,7 @@ public class Player : EasyDraw
 					_position.x < line.start.x &&
 					_position.y < line.start.y + 20f)
 				{
-					Console.WriteLine("blue");
+					//Console.WriteLine("blue");
 					color = 2;
 				}
 				if (line.lineWidth == 13 && //
@@ -158,7 +160,7 @@ public class Player : EasyDraw
 					_position.x < line.start.x &&
 					_position.y < line.start.y + 20f)
 				{
-					Console.WriteLine("red");
+					//Console.WriteLine("red");
 					color = 3;
 				}
 
@@ -192,8 +194,8 @@ public class Player : EasyDraw
 					Reflect(distanceTo, line);
 					canJump = false;
 					acceleration.x = -bounciness * acceleration.x;
-					if (line.lineWidth == 4)
-						ES.current.GameOver();
+					//if (line.lineWidth == 4)
+					//	ES.current.GameOver();
 				}
 				else if (_position.x < line.end.x &&
 					_position.x > line.start.x &&
@@ -201,8 +203,8 @@ public class Player : EasyDraw
 				{
 					Reflect(distanceTo, line);
 					canJump = true;
-					if (line.lineWidth == 4)
-						ES.current.GameOver();
+					//if (line.lineWidth == 4)
+					//	ES.current.GameOver();
 				}
 				 if (line.lineWidth == 3 && //jump
 					_position.x > line.end.x &&

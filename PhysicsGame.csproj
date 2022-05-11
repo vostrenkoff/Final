@@ -170,6 +170,8 @@
     <Compile Include="Gun.cs" />
     <Compile Include="MyGame.cs" />
     <Compile Include="Player.cs" />
+    <Compile Include="SpritePlayer.cs" />
+    <Compile Include="Star.cs" />
     <Compile Include="UI.cs" />
     <Compile Include="UIelements\Button.cs" />
     <Compile Include="UIelements\Text.cs" />

@@ -15,6 +15,7 @@ public class MyGame : Game
 	public static List<Ball> _moversBall;
 	public static List<NLineSegment> lines;
 	public static List<Player> _moversPlayer;
+	public static List<Star> _stars;
 
 	public static bool _switch = true;
 	public static int placingTool = 0;
@@ -39,7 +40,8 @@ public class MyGame : Game
 		UI ui = new UI();
 		AddChild(ui);
 		ES.current.onRestart += Restart;
-		
+		SpritePlayer sp = new SpritePlayer();
+		AddChild(sp);
 		targetFps = 60;
 
 		
@@ -48,6 +50,7 @@ public class MyGame : Game
 		_moversPlayer = new List<Player>();
 		_moversBall = new List<Ball>();
 		lines = new List<NLineSegment>();
+		_stars = new List<Star>();
 
 		LoadScene(1);
 
@@ -112,6 +115,18 @@ public class MyGame : Game
 		AddLineSegment(new NLineSegment(500 + rad, 500 - rad, 500 - rad, 500 - rad, 0xffff2001, 1));
 
 	}
+	public void Level1Stars()
+	{
+		Star[] stars = new Star[3];
+		for (int i = 0; i < stars.Length; i++)
+		{
+			stars[i] = new Star();
+			_stars.Add(stars[i]);
+		}
+		stars[0].SetXY(500, 500);
+		stars[1].SetXY(700, 600);
+		stars[2].SetXY(300, 200);
+	}
 	public void Level2Lines()
 	{
 		AddLineSegment(new NLineSegment(border, height, border, 0, 0xffffffff, 2)); // borders
@@ -173,11 +188,17 @@ public class MyGame : Game
 			lineSegment.Destroy();
 		}
 		lines.Clear();
+		foreach (Star star in _stars)
+		{
+			star.Destroy();
+		}
+		_stars.Clear();
 
 		// create new scene:
 		switch (sceneNumber) {
 			case 1:
 				Level1Lines();
+				Level1Stars();
 				_moversPlayer.Add(new Player(20, new Vec2(100, 1000), new Vec2(0, 0)));
 				break;
 			case 2:
@@ -199,7 +220,10 @@ public class MyGame : Game
 		{
 			AddChild(b);
 		}
-
+		foreach (Star b in _stars)
+		{
+			AddChild(b);
+		}
 
 	}
 
@@ -225,7 +249,7 @@ public class MyGame : Game
 			LoadScene(2);
 			//ES.current.GameOver();
 		}
-		Console.WriteLine(Input.mouseX + " " + Input.mouseY);
+		//Console.WriteLine(Input.mouseX + " " + Input.mouseY);
 	}
 
 	static void Main() {
@@ -347,22 +371,23 @@ public class MyGame : Game
 		if (Input.GetKeyDown(Key.LEFT_CTRL) && placingTool == 1)
 			{
 				GenerateBlock(mx, my, 25f);
-			Console.WriteLine(mx + "-" + my);
+			//Console.WriteLine(mx + "-" + my);
 			}
 
 		if (Input.GetKeyDown(Key.LEFT_CTRL) && placingTool == 2)
 		{
 			GenerateJump(mx, my, 25f);
-			Console.WriteLine(mx + "-" + my);
+			//Console.WriteLine(mx + "-" + my);
 		}
 		if (Input.GetKeyDown(Key.LEFT_CTRL) && placingTool == 3)
 		{
 			GenerateFan(mx, my, 25f);
-			Console.WriteLine(mx + "-" + my);
+			//Console.WriteLine(mx + "-" + my);
 		}
 	}
 	private void Restart()
 	{
+		ES.stars = 0;
 		LoadScene(ES.currentLevel);
 	}
 }
