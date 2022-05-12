@@ -55,7 +55,7 @@ public class Player : EasyDraw
 		velocity = pVelocity;
 		ES.current.onGameOver += Sdohni;
 		SetOrigin(radius, radius);
-		Draw();
+		//Draw();
 		UpdateScreenPosition();
 		_oldPosition = new Vec2(0, 0);
 		_gun = new Gun(0, 0);
@@ -72,7 +72,7 @@ public class Player : EasyDraw
 	{
 		_gun.posX = x;
 		_gun.posY = y;
-		Gizmos.DrawArrow(_position.x, _position.y, velocity.x * 10, velocity.y * 10);
+		//Gizmos.DrawArrow(_position.x, _position.y, velocity.x * 10, velocity.y * 10);
 		Shoot();
 		HandleInput();
 		globalPos = position;

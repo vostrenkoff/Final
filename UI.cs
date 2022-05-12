@@ -40,7 +40,6 @@ namespace GXPEngine
 			RemoveChild(gameOverText);
 			gameOverButton.Destroy();
 			gameOverText.Destroy();
-			showStarCount = true;
 		}
 		private void ShowMenu()
 		{
@@ -59,6 +58,7 @@ namespace GXPEngine
 			menuTitle.Destroy();
 			menuStart.Destroy();
 			menuExit.Destroy();
+			showStarCount = true;
 		}
 		private void Update()
 		{
