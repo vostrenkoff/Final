@@ -29,10 +29,13 @@ namespace GXPEngine
 		}
 		private void ShowGameOverMenu()
 		{
-			gameOverText = new Text(500, 500, 1920 / 2, 1080 / 2, "GAME OVER", 30);
-			gameOverButton = new Button(1920 / 2, 1080 / 2 + 100, "colors.png", "Restart", ES.current.Restart);
-			AddChild(gameOverText);
-			AddChild(gameOverButton);
+			if (GetChildCount() == 1)
+			{
+				gameOverText = new Text(500, 500, 1920 / 2, 1080 / 2, "GAME OVER", 30);
+				gameOverButton = new Button(1920 / 2, 1080 / 2 + 100, "colors.png", "Restart", ES.current.Restart);
+				AddChild(gameOverText);
+				AddChild(gameOverButton); 
+			}
 		}
 		private void HideGameOverMenu()
 		{

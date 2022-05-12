@@ -8,11 +8,63 @@ namespace GXPEngine
 {
 	internal class SpritePlayer : Sprite
 	{
-		public SpritePlayer() : base("playertemp.png")
+		int totalChanges = 0;
+		int lastColor = 0;
+		int R = 0;
+		int G = 0;
+		int B = 0;
+		public SpritePlayer() : base("player.png")
 		{
 			ES.current.onUpdate += Update;
+			ES.current.onRestart += ResetColor;
+			ES.current.onColorChange += ColorChange;
 			SetOrigin(width / 2, height / 2);
-			SetScaleXY(0.5f, 0.5f);
+			SetScaleXY(0.3f, 0.3f);
+		}
+		
+		void ColorChange(int color)
+		{
+			if (lastColor != color)
+			{
+				lastColor = color;
+			}
+			else
+			{
+				return;
+			}
+
+			totalChanges++;
+			if (color == 1)
+			{
+				G += 255;
+				B += 255;
+			}
+			else if (color == 2)
+			{
+				R += 255;
+				B += 255;
+			}
+			else if(color == 3)
+			{
+				R += 255;
+				G += 255;
+			}
+			int r = R / totalChanges;
+			int g = G / totalChanges;
+			int b = B / totalChanges;
+			string _r = r != 0 ? r.ToString("X").ToLower() : "00";
+			string _g = g != 0 ? g.ToString("X").ToLower() : "00";
+			string _b = b != 0 ? b.ToString("X").ToLower() : "00";
+			string fc = _r + _g + _b;
+			this.color = UInt32.Parse(fc, System.Globalization.NumberStyles.AllowHexSpecifier);
+		}
+		void ResetColor()
+		{
+			totalChanges = 0;
+			R = 0;
+			G = 0;
+			B = 0;
+			color = 0xffffff;
 		}
 		void Update()
 		{

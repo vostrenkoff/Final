@@ -146,6 +146,7 @@ public class Player : EasyDraw
 				{
 					//Console.WriteLine("yellow");
 					color = 1;
+					ES.current.ColorChange(color);
 				}
 				if (line.lineWidth == 12 && //
 					_position.x > line.end.x &&
@@ -154,6 +155,7 @@ public class Player : EasyDraw
 				{
 					//Console.WriteLine("blue");
 					color = 2;
+					ES.current.ColorChange(color);
 				}
 				if (line.lineWidth == 13 && //
 					_position.x > line.end.x &&
@@ -162,6 +164,7 @@ public class Player : EasyDraw
 				{
 					//Console.WriteLine("red");
 					color = 3;
+					ES.current.ColorChange(color);
 				}
 
 

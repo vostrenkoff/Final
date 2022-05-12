@@ -22,6 +22,7 @@ namespace GXPEngine
 		public event Action onRestart;
 		public event Action onStartGame;
 		public event Action onExit;
+		public event Action<int> onColorChange;
 
 		public void Update()
 		{
@@ -42,6 +43,10 @@ namespace GXPEngine
 		public void Exit()
 		{
 			onExit?.Invoke();
+		}
+		public void ColorChange(int color)
+		{
+			onColorChange?.Invoke(color);
 		}
 	}
 }
