@@ -17,7 +17,7 @@ public class MyGame : Game
 	public static List<Player> _moversPlayer;
 	public static List<Star> _stars;
 
-	public static bool _switch = true;
+	public static bool _switch = false;
 	public static int placingTool = 0;
 	
 
@@ -78,7 +78,7 @@ public class MyGame : Game
 		AddLineSegment(new NLineSegment(1800, height - border, 1600, height - 300, 0xffffffff, 1));
 
 		
-		GenerateBlock(1296, 551, 25f);
+		GenerateGreenBlock(1296, 551, 25f);
 
 		// 1 - normal line
 		// 2 - 
@@ -127,9 +127,9 @@ public class MyGame : Game
 			stars[i] = new Star();
 			_stars.Add(stars[i]);
 		}
-		stars[0].SetXY(500, 500);
-		stars[1].SetXY(700, 600);
-		stars[2].SetXY(300, 200);
+		stars[0].SetXY(230, 1000);
+		stars[1].SetXY(352, 680);
+		stars[2].SetXY(507, 1000);
 	}
 	public void Level2Lines()
 	{
@@ -137,18 +137,57 @@ public class MyGame : Game
 		AddLineSegment(new NLineSegment(width - border, 0, width - border, height, 0xffffffff, 1));
 		AddLineSegment(new NLineSegment(0, border, width, border, 0xffffffff, 1));
 		AddLineSegment(new NLineSegment(width, height - border, 0, height - border, 0xffffffff, 1));
+		//normal lines
+		AddLineSegment(new NLineSegment( 238, 178, 10, 178, 0xffffffff, 1));
+		AddLineSegment(new NLineSegment( 238, 400, 238, 178, 0xffffffff, 1));
+		AddLineSegment(new NLineSegment( 338, 400, 238, 400, 0xffffffff, 1));
+		AddLineSegment(new NLineSegment( 500, 600, 338, 400, 0xffffffff, 1));
+		AddLineSegment(new NLineSegment( 1038, 600, 500, 600, 0xffffffff, 1));
+		AddLineSegment(new NLineSegment( 1038, 900, 1038, 600, 0xffffffff, 1));
+		AddLineSegment(new NLineSegment( 1638, 900, 1038, 900, 0xffffffff, 1));
+		AddLineSegment(new NLineSegment( 1438, 600, 1438, 900, 0xffffffff, 1));
+		AddLineSegment(new NLineSegment( 1438, 600, 1500, 600, 0xffffffff, 1));
+		AddLineSegment(new NLineSegment( 1500, 900, 1500, 600, 0xffffffff, 1));
+		AddLineSegment(new NLineSegment( 1638, 900, 1638, 600, 0xffffffff, 1));
+		AddLineSegment(new NLineSegment( 1638, 600, 1938, 600, 0xffffffff, 1));
 
-		//AddLineSegment(new NLineSegment(500, _CenterPlatformBoundary, 300, _CenterPlatformBoundary, 0xffffffff, 1)); //platforms
-		AddLineSegment(new NLineSegment(1000, height - 300, 1000, height - border, 0xffffffff, 1));
-		AddLineSegment(new NLineSegment(1100, height - 300, 1000, height - 300, 0xffff8000, 3));
-		AddLineSegment(new NLineSegment(1000, height - 15, 900, height - 15, 0xffff8000, 3));
+
+
+
+		//blocks
+		GenerateGreenBlock(1768,564,25f);
+		GenerateBrownBlock(700,564,25f);
+		GenerateBlueBlock(276,140,25f);
+
+
+		//colors
+		AddLineSegment(new NLineSegment(176, 175, 136, 175, 0xffff8000, 12));
+		AddLineSegment(new NLineSegment(600, 600, 650, 600, 0xffff9999, 11));
+		AddLineSegment(new NLineSegment(550, 600, 500, 600, 0xffff1000, 13));
+
 	}
-	public void GenerateBlock(float x, float y, float rad)
+	public void GenerateGreenBlock(float x, float y, float rad)
     {
 		AddLineSegment(new NLineSegment(x + rad, y - rad, x - rad, y - rad, 0xffffffff, 4), true);
 		AddLineSegment(new NLineSegment(x - rad, y - rad, x - rad, y + rad, 0xffffffff, 4), true);
 		AddLineSegment(new NLineSegment(x + rad, y + rad, x + rad, y - rad, 0xffffffff, 4), true);
 		AddLineSegment(new NLineSegment(x - rad, y + rad, x + rad, y + rad, 0xffffffff, 4), true);
+
+	}
+	public void GenerateBrownBlock(float x, float y, float rad)
+	{
+		AddLineSegment(new NLineSegment(x + rad, y - rad, x - rad, y - rad, 0xffff2000, 4), true);
+		AddLineSegment(new NLineSegment(x - rad, y - rad, x - rad, y + rad, 0xffff2000, 4), true);
+		AddLineSegment(new NLineSegment(x + rad, y + rad, x + rad, y - rad, 0xffff2000, 4), true);
+		AddLineSegment(new NLineSegment(x - rad, y + rad, x + rad, y + rad, 0xffff2000, 4), true);
+
+	}
+	public void GenerateBlueBlock(float x, float y, float rad)
+	{
+		AddLineSegment(new NLineSegment(x + rad, y - rad, x - rad, y - rad, 0xffff3000, 4), true);
+		AddLineSegment(new NLineSegment(x - rad, y - rad, x - rad, y + rad, 0xffff3000, 4), true);
+		AddLineSegment(new NLineSegment(x + rad, y + rad, x + rad, y - rad, 0xffff3000, 4), true);
+		AddLineSegment(new NLineSegment(x - rad, y + rad, x + rad, y + rad, 0xffff3000, 4), true);
 
 	}
 	public void GenerateJump(float x, float y, float rad)
@@ -207,7 +246,7 @@ public class MyGame : Game
 				break;
 			case 2:
 				Level2Lines();
-				_moversPlayer.Add(new Player(20, new Vec2(width / 2, height / 2), new Vec2(0, 0)));
+				_moversPlayer.Add(new Player(20, new Vec2(100,100), new Vec2(0, 0)));
 				break;
 		}
 
@@ -253,7 +292,7 @@ public class MyGame : Game
 			LoadScene(2);
 			//ES.current.GameOver();
 		}
-		//Console.WriteLine(Input.mouseX + " " + Input.mouseY);
+		Console.WriteLine(Input.mouseX + " " + Input.mouseY);
 	}
 
 	static void Main() {
@@ -372,20 +411,23 @@ public class MyGame : Game
 			}
 		}
 
-		if (Input.GetKeyDown(Key.LEFT_CTRL) && placingTool == 1)
+		if (Input.GetKeyDown(Key.LEFT_CTRL) && placingTool == 1 && ES.stars > 0)
 			{
-				GenerateBlock(mx, my, 25f);
+			//GenerateBlock(mx, my, 25f);
 			//Console.WriteLine(mx + "-" + my);
+			ES.stars--;
 			}
 
-		if (Input.GetKeyDown(Key.LEFT_CTRL) && placingTool == 2)
+		if (Input.GetKeyDown(Key.LEFT_CTRL) && placingTool == 2 && ES.stars > 0)
 		{
 			GenerateJump(mx, my, 25f);
+			ES.stars--;
 			//Console.WriteLine(mx + "-" + my);
 		}
-		if (Input.GetKeyDown(Key.LEFT_CTRL) && placingTool == 3)
+		if (Input.GetKeyDown(Key.LEFT_CTRL) && placingTool == 3 && ES.stars > 0)
 		{
 			GenerateFan(mx, my, 25f);
+			ES.stars--;
 			//Console.WriteLine(mx + "-" + my);
 		}
 	}

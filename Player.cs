@@ -16,7 +16,12 @@ public class Player : EasyDraw
 	public readonly int radius;
 	float offset;
 
-	public static int color = 0;
+	public static int color = 2;
+	// 1 = yellow
+	// 2 = blue
+	// 3 = red
+	// 4 = brown
+	// 5 = green
 
 	bool canJump = false;
 	Gun _gun;
@@ -79,7 +84,7 @@ public class Player : EasyDraw
 	}
 	void Shoot()
 	{
-		if (Input.GetKeyDown(Key.LEFT_ALT) && color == 2)
+		if (Input.GetKeyDown(Key.LEFT_ALT))
 		{
 			MyGame._switch = !MyGame._switch;
 			offset = 40f;
@@ -154,7 +159,7 @@ public class Player : EasyDraw
 					_position.y < line.start.y + 20f)
 				{
 					//Console.WriteLine("blue");
-					color = 2;
+					color = 5;
 					ES.current.ColorChange(color);
 				}
 				if (line.lineWidth == 13 && //
@@ -308,7 +313,33 @@ public class Player : EasyDraw
 
 		foreach (NLineSegment line in MyGame.lines)
 		{
-			if (line.lineWidth == 4)
+			if (line.lineWidth == 4 && line.color == 0xffffffff && color == 5)
+			{
+				if (MyGame._switch)
+				{
+					line.start.y -= offset;
+					line.end.y -= offset;
+				}
+				else
+				{
+					line.start.y += offset;
+					line.end.y += offset;
+				}
+			}
+			if (line.lineWidth == 4 && line.color == 0xffff2000 && color == 4)
+			{
+				if (MyGame._switch)
+				{
+					line.start.y -= offset;
+					line.end.y -= offset;
+				}
+				else
+				{
+					line.start.y += offset;
+					line.end.y += offset;
+				}
+			}
+			if (line.lineWidth == 4 && line.color == 0xffff3000 && color == 2)
 			{
 				if (MyGame._switch)
 				{
