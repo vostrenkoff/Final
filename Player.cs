@@ -157,7 +157,7 @@ public class Player : EasyDraw
 					_position.y < line.start.y + 20f)
 				{
 					//Console.WriteLine("blue");
-					color = 2;
+					color = 3;
 					ES.current.ColorChange(color);
 				}
 				if (line.lineWidth == 13 && //
@@ -166,13 +166,9 @@ public class Player : EasyDraw
 					_position.y < line.start.y + 20f)
 				{
 					//Console.WriteLine("red");
-					color = 3;
+					color = 2;
 					ES.current.ColorChange(color);
 				}
-
-
-
-
 				if (_position.x > line.end.x &&
 					_position.x < line.start.x &&
 					_position.y < line.start.y + 20f) // platform check
@@ -319,11 +315,14 @@ public class Player : EasyDraw
 				{
 					line.start.y -= offset;
 					line.end.y -= offset;
+
+					ES.current.Move(offset/3.85f);
 				}
 				else
 				{
 					line.start.y += offset;
 					line.end.y += offset;
+					ES.current.Move(offset / -3.85f);
 				}
 			}
 			//magenta + yellow         brown

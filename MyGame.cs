@@ -17,6 +17,7 @@ public class MyGame : Game
 	public static List<Player> _moversPlayer;
 	public static List<Star> _stars;
 	public static List<Sprite> _objects;
+	public static List<Sprite> blocks;
 
 	public static bool _switch = false;
 	public static int placingTool = 0;
@@ -54,6 +55,7 @@ public class MyGame : Game
 		lines = new List<NLineSegment>();
 		_stars = new List<Star>();
 		_objects = new List<Sprite>();
+		blocks = new List<Sprite>();
 
 
 	}
@@ -80,7 +82,7 @@ public class MyGame : Game
 		AddLineSegment(new NLineSegment(1800, height - border, 1600, height - 300, 0xffffffff, 1));
 
 		
-		GenerateBlueBlock(1296, 551, 25f);
+		GenerateGreenBlock(1296, 551, 25f);
 
 		// 1 - normal line
 		// 2 - 
@@ -179,6 +181,10 @@ public class MyGame : Game
 	public void GenerateGreenBlock(float x, float y, float rad)
     {
 		//cyan + yellow
+		Block block = new Block(0x80ff80);
+		block.SetXY(x-35, y-35);
+		blocks.Add(block);
+		block.UpdatePos();
 		AddLineSegment(new NLineSegment(x + rad, y - rad, x - rad, y - rad, 0xffffffff, 4), true);
 		AddLineSegment(new NLineSegment(x - rad, y - rad, x - rad, y + rad, 0xffffffff, 4), true);
 		AddLineSegment(new NLineSegment(x + rad, y + rad, x + rad, y - rad, 0xffffffff, 4), true);
@@ -222,6 +228,12 @@ public class MyGame : Game
 		AddChild(line);
 		lines.Add(line);
 	}
+	public void AddLineSegment(NLineSegment line, bool spawnNow, out NLineSegment oLine)
+	{
+		oLine = line;
+		AddChild(line);
+		lines.Add(line);
+	}
 	public NLineSegment GetLine(int i) => lines[i];
 	public int GetLineCount() => lines.Count;
 	void LoadScene(int sceneNumber) {
@@ -254,6 +266,11 @@ public class MyGame : Game
 			item.Destroy();
 		}
 		_objects.Clear();
+		foreach (var item in blocks)
+		{
+			item.Destroy();
+		}
+		blocks.Clear();
 
 		// create new scene:
 		switch (sceneNumber) {
@@ -285,6 +302,10 @@ public class MyGame : Game
 		foreach (Star b in _stars)
 		{
 			AddChild(b);
+		}
+		foreach (var item in blocks)
+		{
+			AddChild(item);
 		}
 
 	}
@@ -319,6 +340,7 @@ public class MyGame : Game
 	}
 	Trampoline floatingTrampoline;
 	Fan floatingFan;
+	Block floatingBlock;
 	void PlacingTool()
     {
 		if (Input.GetKeyDown(Key.SPACE))
@@ -328,25 +350,32 @@ public class MyGame : Game
 				placingTool = 0;
 			if (placingTool == 2)
 			{
+				floatingBlock.Destroy();
 				floatingTrampoline = new Trampoline();
 				AddChild(floatingTrampoline);
 			}
-			else if(placingTool == 3)
+			else if (placingTool == 3)
 			{
-				RemoveChild(floatingTrampoline);
 				floatingTrampoline.Destroy();
 				floatingFan = new Fan();
 				AddChild(floatingFan);
 			}
-			else if(placingTool == 0)
+			else if (placingTool == 0)
 			{
 				floatingFan.Destroy();
 			}
+			else if(placingTool == 1)
+			{
+				floatingBlock = new Block(0x80ff80, true);
+				AddChild(floatingBlock);
+			}	
 		}
 			float mx = Input.mouseX;
 			float my = Input.mouseY;
 			float rad = 25f;
-        if (placingTool == 1) { 
+        if (placingTool == 1)
+		{
+			floatingBlock.SetXY(mx - 35, my - 30);
 			foreach (NLineSegment line in lines) {
 				if (line.color == 0xffff8001) {
 					line.start.x = mx + rad;
@@ -455,6 +484,9 @@ public class MyGame : Game
 			//GenerateBlock(mx, my, 25f);
 			//Console.WriteLine(mx + "-" + my);
 			ES.stars--;
+			Block block = new Block(0x80ff80, true);
+			AddChild(block);
+			_objects.Add(block);
 			}
 
 		if (Input.GetKeyDown(Key.LEFT_CTRL) && placingTool == 2 && ES.stars > 0)

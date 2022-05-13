@@ -23,6 +23,7 @@ namespace GXPEngine
 		public event Action onStartGame;
 		public event Action onExit;
 		public event Action<int> onColorChange;
+		public event Action<float> onMove;
 
 		public void Update()
 		{
@@ -47,6 +48,10 @@ namespace GXPEngine
 		public void ColorChange(int color)
 		{
 			onColorChange?.Invoke(color);
+		}
+		public void Move(float offset)
+		{
+			onMove?.Invoke(offset);
 		}
 	}
 }
