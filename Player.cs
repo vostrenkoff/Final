@@ -287,6 +287,8 @@ public class Player : EasyDraw
 
 	void HandleInput()
 	{
+		if(x > 1850)
+			ES.current.Win();
 		if (Input.GetKeyDown(Key.UP) && velocity.y > -0.8f && velocity.y < 0.8f &&canJump)
 		{
 			//acceleration.y = -1.3f;
