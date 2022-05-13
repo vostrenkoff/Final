@@ -67,20 +67,21 @@ public class MyGame : Game
 		AddLineSegment(new NLineSegment(border, height, border, 0, 0xffffffff, 2)); // borders
 		AddLineSegment(new NLineSegment(width - border, 0, width - border, height, 0xffffffff, 1));
 		AddLineSegment(new NLineSegment(0, border, width, border, 0xffffffff, 1));
-		AddLineSegment(new NLineSegment(width, height - border, 0, height - border, 0xffffffff, 1));
+		AddLineSegment(new NLineSegment(width, 963, 0, 963, 0xffffffff, 1));
 
 		//AddLineSegment(new NLineSegment(500, _CenterPlatformBoundary, 300, _CenterPlatformBoundary, 0xffffffff, 1)); //platforms
-		AddLineSegment(new NLineSegment(1000, height - 300, 1000, height - border, 0xffffffff, 1));
-		AddLineSegment(new NLineSegment(1100, height - 300, 1000, height - 300, 0xffff8000, 3));
-		AddLineSegment(new NLineSegment(1000, height - 15, 900, height - 15, 0xffff8000, 3));
-		AddLineSegment(new NLineSegment(1100, height - 500, 1100, height - 300, 0xffffffff, 1));
-		AddLineSegment(new NLineSegment(1500, height - 500, 1100, height - 500, 0xffffffff, 1));
-		AddLineSegment(new NLineSegment(1500, height - 300, 1500, height - 500, 0xffffffff, 1));
-		AddLineSegment(new NLineSegment(1600, height - 300, 1500, height - 300, 0xffff2000, 5));
-		AddLineSegment(new NLineSegment(1800, height - border, 1600, height - 300, 0xffffffff, 1));
+		//AddLineSegment(new NLineSegment(1000, height - 300, 1000, height - border, 0xffffffff, 1));
+		//AddLineSegment(new NLineSegment(1100, height - 300, 1000, height - 300, 0xffff8000, 3));
+		//AddLineSegment(new NLineSegment(1000, height - 15, 900, height - 15, 0xffff8000, 3));
+
+		AddLineSegment(new NLineSegment(1459, 611, 1459, 962, 0xffffffff, 1));
+		AddLineSegment(new NLineSegment(1660, 611, 1459, 611, 0xffffffff, 1));
+		//AddLineSegment(new NLineSegment(1500, height - 300, 1500, height - 500, 0xffffffff, 1));
+		//AddLineSegment(new NLineSegment(1600, height - 300, 1500, height - 300, 0xffff2000, 5));
+		AddLineSegment(new NLineSegment(1660, 611, 1882, 780, 0xffffffff, 1));
 
 		
-		GenerateBlueBlock(1296, 551, 25f);
+		GenerateBlueBlock(1550, 570, 25f);
 
 		// 1 - normal line
 		// 2 - 
@@ -99,14 +100,14 @@ public class MyGame : Game
 
 
 
-		AddLineSegment(new NLineSegment( 300, 777, 300, 1070,0xffffffff, 1));
-		AddLineSegment(new NLineSegment(450, 1070, 450, 777, 0xffffffff, 1));
-		AddLineSegment(new NLineSegment( 450, 777, 300, 777, 0xffffffff, 1));
+		AddLineSegment(new NLineSegment( 686, 630, 686, 963,0xffffffff, 1));
+		AddLineSegment(new NLineSegment(890, 963, 890, 630, 0xffffffff, 1));
+		AddLineSegment(new NLineSegment( 686, 630, 890, 630, 0xffffffff, 1));
 
 		//colors
-		AddLineSegment(new NLineSegment( 210, 1065, 150, 1065, 0xffff9999, 11));
-		AddLineSegment(new NLineSegment( 410, 772, 350, 772, 0xffff8000, 12));
-		AddLineSegment(new NLineSegment( 660, 1065, 600, 1065, 0xffff1000, 13));
+		AddLineSegment(new NLineSegment( 240, 960, 180, 960, 0xffff9999, 11));
+		AddLineSegment(new NLineSegment( 790, 625, 730, 625, 0xffff8000, 12));
+		AddLineSegment(new NLineSegment( 660, 960, 600, 960, 0xffff1000, 13));
 
 		//block tool
 		AddLineSegment(new NLineSegment(500 + rad, 500 - rad, 500 - rad, 500 - rad, 0xffff8001, 1));
@@ -129,9 +130,9 @@ public class MyGame : Game
 			stars[i] = new Star();
 			_stars.Add(stars[i]);
 		}
-		stars[0].SetXY(230, 1000);
-		stars[1].SetXY(352, 680);
-		stars[2].SetXY(507, 1000);
+		stars[0].SetXY(592, 894);
+		stars[1].SetXY(1042, 894);
+		stars[2].SetXY(787, 551);
 	}
 	public void Level1Bg()
 	{
@@ -146,7 +147,7 @@ public class MyGame : Game
 		AddLineSegment(new NLineSegment(border, height, border, 0, 0xffffffff, 2)); // borders
 		AddLineSegment(new NLineSegment(width - border, 0, width - border, height, 0xffffffff, 1));
 		AddLineSegment(new NLineSegment(0, border, width, border, 0xffffffff, 1));
-		AddLineSegment(new NLineSegment(width, height - border, 0, height - border, 0xffffffff, 1));
+		AddLineSegment(new NLineSegment(width, 963, 0, 963, 0x0000000, 1));
 		//normal lines
 		AddLineSegment(new NLineSegment( 238, 178, 10, 178, 0xffffffff, 1));
 		AddLineSegment(new NLineSegment( 238, 400, 238, 178, 0xffffffff, 1));
@@ -260,8 +261,8 @@ public class MyGame : Game
 			case 1:
 				Level1Lines();
 				Level1Stars();
-				//Level1Bg();
-				_moversPlayer.Add(new Player(20, new Vec2(100, 1000), new Vec2(0, 0)));
+				Level1Bg();
+				_moversPlayer.Add(new Player(20, new Vec2(100, 900), new Vec2(0, 0)));
 				break;
 			case 2:
 				Level2Lines();
@@ -311,7 +312,7 @@ public class MyGame : Game
 			LoadScene(2);
 			//ES.current.GameOver();
 		}
-		//Console.WriteLine(Input.mouseX + " " + Input.mouseY);
+		Console.WriteLine(Input.mouseX + " " + Input.mouseY);
 	}
 
 	static void Main() {
