@@ -19,7 +19,7 @@ namespace GXPEngine.UIelements
 		}
 		public void UpdateText(string text)
 		{
-			Clear(0, 0, 0);
+			Clear(0, 0, 0,0);
 			Text(text);
 		}
 	}

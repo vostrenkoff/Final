@@ -16,6 +16,7 @@ namespace GXPEngine
 
 		public static int currentLevel;
 		public static int stars = 0;
+		public static bool яВамЗапрещаюУмирать = false;
 
 		public event Action onUpdate;
 		public event Action onGameOver;

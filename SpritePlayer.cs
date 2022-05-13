@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GXPEngine
 {
-	internal class SpritePlayer : Sprite
+	internal class SpritePlayer : AnimationSprite
 	{
 		int totalChanges = 0;
 		int lastColor = 0;
@@ -16,7 +16,7 @@ namespace GXPEngine
 		Sprite inside;
 		Sound pickup;
 		public static int[] pColor = new int[3];
-		public SpritePlayer() : base("player.png")
+		public SpritePlayer() : base("player.png",1,1)
 		{
 			pickup = new Sound("pickup.wav", false, false);
 			ES.current.onUpdate += Update;

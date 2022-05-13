@@ -170,6 +170,7 @@
     <Compile Include="Fan.cs" />
     <Compile Include="Gun.cs" />
     <Compile Include="MyGame.cs" />
+    <Compile Include="Paint.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="SpritePlayer.cs" />
     <Compile Include="Star.cs" />

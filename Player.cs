@@ -183,6 +183,8 @@ public class Player : EasyDraw
 				}
 					Reflect(distanceTo, line);
 					canJump = true;
+					if (velocity.y > 20&&!ES.яВамЗапрещаюУмирать)
+						ES.current.GameOver();
 				}
 				else if (line.start.y != line.end.y &&
 					_position.y > line.start.y &&

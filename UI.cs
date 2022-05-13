@@ -23,7 +23,7 @@ namespace GXPEngine
 			ES.current.onRestart += HideGameOverMenu;
 			ES.current.onUpdate += Update;
 			ES.current.onStartGame += HideMenu;
-			starText = new Text(500, 500, 1700, 300, "", 30);
+			starText = new Text(500, 500, 1700, 100, "", 30);
 			AddChild(starText);
 			ShowMenu();
 		}
@@ -71,7 +71,7 @@ namespace GXPEngine
 			}
 			else
 			{
-				starText.Clear(0, 0, 0);
+				starText.Clear(0,0 , 0, 0);
 			}
 		}
 	}

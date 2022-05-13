@@ -109,8 +109,17 @@ public class MyGame : Game
 
 		//colors
 		AddLineSegment(new NLineSegment( 240, 960, 180, 960, 0xffff9999, 11));
+		Paint cyan = new Paint(0x00ffff);
+		cyan.SetXY(240-60, 960-42);
+		_objects.Add(cyan);
 		AddLineSegment(new NLineSegment( 790, 625, 730, 625, 0xffff8000, 12));
+		Paint magenta = new Paint(0xff00ff);
+		magenta.SetXY(790 - 60, 625 - 42);
+		_objects.Add(magenta);
 		AddLineSegment(new NLineSegment( 660, 960, 600, 960, 0xffff1000, 13));
+		Paint yellow = new Paint(0xffff00);
+		yellow.SetXY(660 - 60, 960 - 42);
+		_objects.Add(yellow);
 
 		//block tool
 		AddLineSegment(new NLineSegment(500 + rad, 500 - rad, 500 - rad, 500 - rad, 0xffff8001, 1));
@@ -143,7 +152,7 @@ public class MyGame : Game
 		AddChildAt(bg1, 0);
 		Sprite bg2 = new Sprite("bg2.png");
 		bg2.SetXY(0, 100);
-		AddChild(bg2);
+		AddChildAt(bg2, 1);
 	}
 	public void Level2Lines()
 	{
@@ -306,6 +315,10 @@ public class MyGame : Game
 			AddChild(b);
 		}
 		foreach (var item in blocks)
+		{
+			AddChild(item);
+		}
+		foreach (var item in _objects)
 		{
 			AddChild(item);
 		}
