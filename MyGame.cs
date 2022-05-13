@@ -78,7 +78,7 @@ public class MyGame : Game
 		AddLineSegment(new NLineSegment(1800, height - border, 1600, height - 300, 0xffffffff, 1));
 
 		
-		GenerateGreenBlock(1296, 551, 25f);
+		GenerateBlueBlock(1296, 551, 25f);
 
 		// 1 - normal line
 		// 2 - 
@@ -131,6 +131,14 @@ public class MyGame : Game
 		stars[1].SetXY(352, 680);
 		stars[2].SetXY(507, 1000);
 	}
+	public void Level1Bg()
+	{
+		Sprite bg1 = new Sprite("bg1.jpg");
+		AddChild(bg1);
+		Sprite bg2 = new Sprite("bg2.png");
+		bg2.SetXY(0, 100);
+		AddChild(bg2);
+	}
 	public void Level2Lines()
 	{
 		AddLineSegment(new NLineSegment(border, height, border, 0, 0xffffffff, 2)); // borders
@@ -168,6 +176,7 @@ public class MyGame : Game
 	}
 	public void GenerateGreenBlock(float x, float y, float rad)
     {
+		//cyan + yellow
 		AddLineSegment(new NLineSegment(x + rad, y - rad, x - rad, y - rad, 0xffffffff, 4), true);
 		AddLineSegment(new NLineSegment(x - rad, y - rad, x - rad, y + rad, 0xffffffff, 4), true);
 		AddLineSegment(new NLineSegment(x + rad, y + rad, x + rad, y - rad, 0xffffffff, 4), true);
@@ -176,6 +185,7 @@ public class MyGame : Game
 	}
 	public void GenerateBrownBlock(float x, float y, float rad)
 	{
+		//magenta + yellow
 		AddLineSegment(new NLineSegment(x + rad, y - rad, x - rad, y - rad, 0xffff2000, 4), true);
 		AddLineSegment(new NLineSegment(x - rad, y - rad, x - rad, y + rad, 0xffff2000, 4), true);
 		AddLineSegment(new NLineSegment(x + rad, y + rad, x + rad, y - rad, 0xffff2000, 4), true);
@@ -184,6 +194,7 @@ public class MyGame : Game
 	}
 	public void GenerateBlueBlock(float x, float y, float rad)
 	{
+		//magenta + cyan
 		AddLineSegment(new NLineSegment(x + rad, y - rad, x - rad, y - rad, 0xffff3000, 4), true);
 		AddLineSegment(new NLineSegment(x - rad, y - rad, x - rad, y + rad, 0xffff3000, 4), true);
 		AddLineSegment(new NLineSegment(x + rad, y + rad, x + rad, y - rad, 0xffff3000, 4), true);
@@ -242,6 +253,7 @@ public class MyGame : Game
 			case 1:
 				Level1Lines();
 				Level1Stars();
+				//Level1Bg();
 				_moversPlayer.Add(new Player(20, new Vec2(100, 1000), new Vec2(0, 0)));
 				break;
 			case 2:
@@ -292,7 +304,7 @@ public class MyGame : Game
 			LoadScene(2);
 			//ES.current.GameOver();
 		}
-		Console.WriteLine(Input.mouseX + " " + Input.mouseY);
+		//Console.WriteLine(Input.mouseX + " " + Input.mouseY);
 	}
 
 	static void Main() {

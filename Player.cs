@@ -17,11 +17,9 @@ public class Player : EasyDraw
 	float offset;
 
 	public static int color = 2;
-	// 1 = yellow
-	// 2 = blue
-	// 3 = red
-	// 4 = brown
-	// 5 = green
+	// 1 = cyan
+	// 2 = magenta
+	// 3 = yellow
 
 	bool canJump = false;
 	Gun _gun;
@@ -159,7 +157,7 @@ public class Player : EasyDraw
 					_position.y < line.start.y + 20f)
 				{
 					//Console.WriteLine("blue");
-					color = 5;
+					color = 2;
 					ES.current.ColorChange(color);
 				}
 				if (line.lineWidth == 13 && //
@@ -313,7 +311,9 @@ public class Player : EasyDraw
 
 		foreach (NLineSegment line in MyGame.lines)
 		{
-			if (line.lineWidth == 4 && line.color == 0xffffffff && color == 5)
+			int[] playerColor = SpritePlayer.pColor;
+			//vyan + yellow         green
+			if (line.lineWidth == 4 && line.color == 0xffffffff && playerColor[0] == 1 && playerColor[2] == 1)
 			{
 				if (MyGame._switch)
 				{
@@ -326,7 +326,8 @@ public class Player : EasyDraw
 					line.end.y += offset;
 				}
 			}
-			if (line.lineWidth == 4 && line.color == 0xffff2000 && color == 4)
+			//magenta + yellow         brown
+			if (line.lineWidth == 4 && line.color == 0xffff2000 && playerColor[1] == 1 && playerColor[2] == 1)
 			{
 				if (MyGame._switch)
 				{
@@ -339,7 +340,8 @@ public class Player : EasyDraw
 					line.end.y += offset;
 				}
 			}
-			if (line.lineWidth == 4 && line.color == 0xffff3000 && color == 2)
+			//magenta + cyan         blue
+			if (line.lineWidth == 4 && line.color == 0xffff3000 && playerColor[0] == 1 && playerColor[1] == 1)
 			{
 				if (MyGame._switch)
 				{
