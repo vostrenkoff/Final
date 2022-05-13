@@ -318,6 +318,7 @@ public class MyGame : Game
 		new MyGame().Start();
 	}
 	Trampoline floatingTrampoline;
+	Fan floatingFan;
 	void PlacingTool()
     {
 		if (Input.GetKeyDown(Key.SPACE))
@@ -334,6 +335,12 @@ public class MyGame : Game
 			{
 				RemoveChild(floatingTrampoline);
 				floatingTrampoline.Destroy();
+				floatingFan = new Fan();
+				AddChild(floatingFan);
+			}
+			else if(placingTool == 0)
+			{
+				floatingFan.Destroy();
 			}
 		}
 			float mx = Input.mouseX;
@@ -415,6 +422,7 @@ public class MyGame : Game
 		}
 		if (placingTool == 3)
 		{
+			floatingFan.SetXY(mx - 35, my - 30);
 			foreach (NLineSegment line in lines)
 			{
 
@@ -463,6 +471,10 @@ public class MyGame : Game
 		{
 			GenerateFan(mx, my, 25f);
 			ES.stars--;
+			Fan fan = new Fan();
+			fan.SetXY(mx - 35, my - 30);
+			AddChild(fan);
+			_objects.Add(fan);
 			//Console.WriteLine(mx + "-" + my);
 		}
 	}

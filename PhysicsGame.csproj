@@ -167,6 +167,7 @@
     <Compile Include="Components\LineSegment.cs" />
     <Compile Include="Components\NLineSegment.cs" />
     <Compile Include="ES.cs" />
+    <Compile Include="Fan.cs" />
     <Compile Include="Gun.cs" />
     <Compile Include="MyGame.cs" />
     <Compile Include="Player.cs" />
