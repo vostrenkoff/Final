@@ -46,7 +46,7 @@ namespace GXPEngine
 		}
 		private void ShowMenu()
 		{
-			menuTitle = new Text(500, 500, 1920 / 2, 280, "Ballls game", 60);
+			menuTitle = new Text(500, 500, 1920 / 2, 280, "Neon Planet", 60);
 			menuStart = new Button(1920 / 2, 500, "movingBlock.png", "Start", ES.current.StartGame);
 			menuExit = new Button(1920 / 2, 800, "movingBlock.png", "Exit", ES.current.Exit);
 			AddChild(menuTitle);
