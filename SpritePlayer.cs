@@ -14,9 +14,11 @@ namespace GXPEngine
 		int G = 0;
 		int B = 0;
 		Sprite inside;
+		Sound pickup;
 		public static int[] pColor = new int[3];
 		public SpritePlayer() : base("player.png")
 		{
+			pickup = new Sound("pickup.wav", false, false);
 			ES.current.onUpdate += Update;
 			ES.current.onRestart += ResetColor;
 			ES.current.onColorChange += ColorChange;
@@ -94,6 +96,7 @@ namespace GXPEngine
 				{
 					ES.stars++;
 					item.Destroy();
+					pickup.Play();
 				}
 			}
 		}

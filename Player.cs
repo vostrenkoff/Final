@@ -12,7 +12,8 @@ public class Player : EasyDraw
 	public static Vec2 acceleration = new Vec2(0, 0);
 	public static Vec2 velocity = new Vec2(0,0);
 	public static Vec2 globalPos = new Vec2(0,0);
-
+	Sound jump;
+	Sound death;
 	public readonly int radius;
 	float offset;
 
@@ -53,6 +54,8 @@ public class Player : EasyDraw
 
 	public Player(int pRadius, Vec2 pPosition, Vec2 pVelocity) : base(pRadius * 2 + 1, pRadius * 2 + 1)
 	{
+		death = new Sound("death.wav", false, false);
+		jump = new Sound("spring.wav", false, false);
 		radius = pRadius;
 		_position = pPosition;
 		velocity = pVelocity;
@@ -174,7 +177,10 @@ public class Player : EasyDraw
 					_position.y < line.start.y + 20f) // platform check
 				{
 					if (velocity.y > 20)
-						ES.current.GameOver();
+					{
+					ES.current.GameOver();
+						death.Play();
+				}
 					Reflect(distanceTo, line);
 					canJump = true;
 				}
@@ -213,8 +219,9 @@ public class Player : EasyDraw
 					_position.x < line.start.x &&
 					_position.y < line.start.y + 20f)
                 {
+					jump.Play();
 					//Reflect(distanceTo, line);
-					velocity.y = -25.3f;
+					velocity.y = -28.3f;
                 }
 				 
 

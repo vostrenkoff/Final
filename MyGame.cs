@@ -10,7 +10,7 @@ public class MyGame : Game
 
 	float rad = 25f;
 	float border = 10;
-
+	Sound placingsnd;
 
 	public static List<Ball> _moversBall;
 	public static List<NLineSegment> lines;
@@ -38,6 +38,7 @@ public class MyGame : Game
 
 	public MyGame() : base(1920, 1080, false, false)
 	{
+		placingsnd = new Sound("placing.wav", false, false);
 		ES es = new ES();
 		UI ui = new UI();
 		AddChild(ui);
@@ -104,7 +105,7 @@ public class MyGame : Game
 
 		AddLineSegment(new NLineSegment( 686, 630, 686, 963,0xffffffff, 1));
 		AddLineSegment(new NLineSegment(890, 963, 890, 630, 0xffffffff, 1));
-		AddLineSegment(new NLineSegment( 686, 630, 890, 630, 0xffffffff, 1));
+		AddLineSegment(new NLineSegment(  890, 630, 686, 630, 0xffffffff, 1));
 
 		//colors
 		AddLineSegment(new NLineSegment( 240, 960, 180, 960, 0xffff9999, 11));
@@ -480,8 +481,9 @@ public class MyGame : Game
 			}
 		}
 
-		if (Input.GetKeyDown(Key.LEFT_CTRL) && placingTool == 1 && ES.stars > 0)
+		if (Input.GetMouseButtonDown(0) && placingTool == 1 && ES.stars > 0)
 			{
+			placingsnd.Play();
 			//GenerateBlock(mx, my, 25f);
 			//Console.WriteLine(mx + "-" + my);
 			ES.stars--;
@@ -490,8 +492,9 @@ public class MyGame : Game
 			_objects.Add(block);
 			}
 
-		if (Input.GetKeyDown(Key.LEFT_CTRL) && placingTool == 2 && ES.stars > 0)
+		if (Input.GetMouseButtonDown(0) && placingTool == 2 && ES.stars > 0)
 		{
+			placingsnd.Play();
 			GenerateJump(mx, my, 25f);
 			ES.stars--;
 			Trampoline tramp = new Trampoline();
@@ -500,8 +503,9 @@ public class MyGame : Game
 			_objects.Add(tramp);
 			//Console.WriteLine(mx + "-" + my);
 		}
-		if (Input.GetKeyDown(Key.LEFT_CTRL) && placingTool == 3 && ES.stars > 0)
+		if (Input.GetMouseButtonDown(0) && placingTool == 3 && ES.stars > 0)
 		{
+			placingsnd.Play();
 			GenerateFan(mx, my, 25f);
 			ES.stars--;
 			Fan fan = new Fan();
