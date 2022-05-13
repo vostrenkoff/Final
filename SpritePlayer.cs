@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GXPEngine
 {
-	internal class SpritePlayer : Sprite
+	internal class SpritePlayer : AnimationSprite
 	{
 		int totalChanges = 0;
 		int lastColor = 0;
@@ -15,7 +15,7 @@ namespace GXPEngine
 		int B = 0;
 		Sprite inside;
 		public static int[] pColor = new int[3];
-		public SpritePlayer() : base("player.png")
+		public SpritePlayer() : base("player.png",1,1)
 		{
 			ES.current.onUpdate += Update;
 			ES.current.onRestart += ResetColor;

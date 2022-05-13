@@ -173,10 +173,10 @@ public class Player : EasyDraw
 					_position.x < line.start.x &&
 					_position.y < line.start.y + 20f) // platform check
 				{
-					if (velocity.y > 20)
-						ES.current.GameOver();
 					Reflect(distanceTo, line);
 					canJump = true;
+					if (velocity.y > 20&&!ES.яВамЗапрещаюУмирать)
+						ES.current.GameOver();
 				}
 				else if (line.start.y != line.end.y &&
 					_position.y > line.start.y &&

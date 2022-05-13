@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GXPEngine
 {
-	internal class Trampoline : AnimationSprite
+	public class Trampoline : AnimationSprite
 	{
 		public Trampoline() : base("tr2.png", 4, 2)
 		{
@@ -19,6 +19,7 @@ namespace GXPEngine
 		int currentFrame = 0;
 		int framesAlive = 320;
 		int lastCycle = 0;
+		int lastTouch;
 		bool animate = false;
 		private void Update()
 		{
@@ -42,6 +43,18 @@ namespace GXPEngine
 			else if (framesAlive - currentFrame > 21&&animate)
 			{
 				animate = false;
+			}
+			foreach (var item in GetCollisions())
+			{
+				if (item is SpritePlayer)
+				{
+					ES.яВамЗапрещаюУмирать = true;
+					lastTouch = framesAlive;
+				}
+			}
+			if (framesAlive - lastTouch > 120)
+			{
+				ES.яВамЗапрещаюУмирать = false;
 			}
 		}
 	}
