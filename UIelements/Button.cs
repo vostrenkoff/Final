@@ -34,7 +34,7 @@ namespace GXPEngine.UIelements
 			bool mouseInBoundsY = y > buttonY - height/2 && y < buttonY + height/2;
 			mouseInBounds = mouseInBoundsX && mouseInBoundsY;
 			CheckPress();
-			HighlightButton();
+			//HighlightButton();
 		}
 		private void HighlightButton()
 		{

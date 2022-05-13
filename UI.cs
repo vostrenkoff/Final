@@ -32,7 +32,7 @@ namespace GXPEngine
 			if (GetChildCount() == 1)
 			{
 				gameOverText = new Text(500, 500, 1920 / 2, 1080 / 2, "GAME OVER", 30);
-				gameOverButton = new Button(1920 / 2, 1080 / 2 + 100, "colors.png", "Restart", ES.current.Restart);
+				gameOverButton = new Button(1920 / 2, 1080 / 2 + 100, "movingBlock.png", "Restart", ES.current.Restart);
 				AddChild(gameOverText);
 				AddChild(gameOverButton); 
 			}
@@ -47,8 +47,8 @@ namespace GXPEngine
 		private void ShowMenu()
 		{
 			menuTitle = new Text(500, 500, 1920 / 2, 280, "Ballls game", 60);
-			menuStart = new Button(1920 / 2, 500, "colors.png", "Start", ES.current.StartGame);
-			menuExit = new Button(1920 / 2, 800, "colors.png", "Exit", ES.current.Exit);
+			menuStart = new Button(1920 / 2, 500, "movingBlock.png", "Start", ES.current.StartGame);
+			menuExit = new Button(1920 / 2, 800, "movingBlock.png", "Exit", ES.current.Exit);
 			AddChild(menuTitle);
 			AddChild(menuStart);
 			AddChild(menuExit);
