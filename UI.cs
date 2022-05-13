@@ -17,12 +17,14 @@ namespace GXPEngine
 		Button menuExit;
 		bool showStarCount = false;
 		Text starText;
+		AnimationSprite anim;
 		public UI()
 		{
 			ES.current.onGameOver += ShowGameOverMenu;
 			ES.current.onRestart += HideGameOverMenu;
 			ES.current.onUpdate += Update;
 			ES.current.onStartGame += HideMenu;
+			ES.current.onWin += ShowWinMenu;
 			starText = new Text(500, 500, 1700, 100, "", 30);
 			AddChild(starText);
 			ShowMenu();
@@ -32,7 +34,7 @@ namespace GXPEngine
 			if (GetChildCount() == 1)
 			{
 				gameOverText = new Text(500, 500, 1920 / 2, 1080 / 2, "GAME OVER", 30);
-				gameOverButton = new Button(1920 / 2, 1080 / 2 + 100, "movingBlock.png", "Restart", ES.current.Restart);
+				gameOverButton = new Button(1920 / 2, 1080 / 2 + 200, "movingBlock.png", "Restart", ES.current.Restart);
 				AddChild(gameOverText);
 				AddChild(gameOverButton); 
 			}
@@ -43,6 +45,12 @@ namespace GXPEngine
 			RemoveChild(gameOverText);
 			gameOverButton.Destroy();
 			gameOverText.Destroy();
+		}
+		private void ShowWinMenu()
+		{
+			gameOverText = new Text(500, 500, 1920 / 2, 1080 / 2, "You won", 30);
+			anim = new AnimationSprite("win.png", 3, 2);
+			anim.SetCycle(0, 6);
 		}
 		private void ShowMenu()
 		{
@@ -65,6 +73,7 @@ namespace GXPEngine
 		}
 		private void Update()
 		{
+			anim.Animate();
 			if (showStarCount)
 			{
 				starText.UpdateText("Stars : " + ES.stars);

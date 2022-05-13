@@ -25,6 +25,7 @@ namespace GXPEngine
 		public event Action onExit;
 		public event Action<int> onColorChange;
 		public event Action<float> onMove;
+		public event Action onWin;
 
 		public void Update()
 		{
@@ -53,6 +54,10 @@ namespace GXPEngine
 		public void Move(float offset)
 		{
 			onMove?.Invoke(offset);
+		}
+		public void Win()
+		{
+			onWin?.Invoke();
 		}
 	}
 }
