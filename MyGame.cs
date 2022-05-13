@@ -67,21 +67,21 @@ public class MyGame : Game
 	public void Level1Lines()
 	{
 
-		AddLineSegment(new NLineSegment(border, height, border, 0, 0xffffffff, 2)); // borders
-		AddLineSegment(new NLineSegment(width - border, 0, width - border, height, 0xffffffff, 1));
-		AddLineSegment(new NLineSegment(0, border, width, border, 0xffffffff, 1));
-		AddLineSegment(new NLineSegment(width, 963, 0, 963, 0xffffffff, 1));
+		AddLineSegment(new NLineSegment(border, height, border, 0, 0x00000000, 2)); // borders
+		AddLineSegment(new NLineSegment(width - border, 0, width - border, height, 0x00000000, 1));
+		AddLineSegment(new NLineSegment(0, border, width, border, 0x00000000, 1));
+		AddLineSegment(new NLineSegment(width, 963, 0, 963, 0x00000000, 1));
 
 		//AddLineSegment(new NLineSegment(500, _CenterPlatformBoundary, 300, _CenterPlatformBoundary, 0xffffffff, 1)); //platforms
 		//AddLineSegment(new NLineSegment(1000, height - 300, 1000, height - border, 0xffffffff, 1));
 		//AddLineSegment(new NLineSegment(1100, height - 300, 1000, height - 300, 0xffff8000, 3));
 		//AddLineSegment(new NLineSegment(1000, height - 15, 900, height - 15, 0xffff8000, 3));
 
-		AddLineSegment(new NLineSegment(1459, 611, 1459, 962, 0xffffffff, 1));
-		AddLineSegment(new NLineSegment(1660, 611, 1459, 611, 0xffffffff, 1));
+		AddLineSegment(new NLineSegment(1459, 611, 1459, 962, 0x00000000, 1));
+		AddLineSegment(new NLineSegment(1660, 611, 1459, 611, 0x00000000, 1));
 		//AddLineSegment(new NLineSegment(1500, height - 300, 1500, height - 500, 0xffffffff, 1));
 		//AddLineSegment(new NLineSegment(1600, height - 300, 1500, height - 300, 0xffff2000, 5));
-		AddLineSegment(new NLineSegment(1660, 611, 1882, 780, 0xffffffff, 1));
+		AddLineSegment(new NLineSegment (1882, 780, 1660, 611, 0x00000000, 1));
 
 		
 		GenerateGreenBlock(1550, 570, 25f);
@@ -103,20 +103,20 @@ public class MyGame : Game
 
 
 
-		AddLineSegment(new NLineSegment( 686, 630, 686, 963,0xffffffff, 1));
-		AddLineSegment(new NLineSegment(890, 963, 890, 630, 0xffffffff, 1));
-		AddLineSegment(new NLineSegment(  890, 630, 686, 630, 0xffffffff, 1));
+		AddLineSegment(new NLineSegment( 686, 630, 686, 963, 0x00000000, 1));
+		AddLineSegment(new NLineSegment(890, 963, 890, 630, 0x00000000, 1));
+		AddLineSegment(new NLineSegment(  890, 630, 686, 630, 0x00000000, 1));
 
 		//colors
-		AddLineSegment(new NLineSegment( 240, 960, 180, 960, 0xffff9999, 11));
+		AddLineSegment(new NLineSegment( 240, 960, 180, 960, 0x00000000, 11));
 		Paint cyan = new Paint(0x00ffff);
 		cyan.SetXY(240-60, 960-42);
 		_objects.Add(cyan);
-		AddLineSegment(new NLineSegment( 790, 625, 730, 625, 0xffff8000, 12));
+		AddLineSegment(new NLineSegment( 790, 625, 730, 625, 0x00000000, 12));
 		Paint magenta = new Paint(0xff00ff);
 		magenta.SetXY(790 - 60, 625 - 42);
 		_objects.Add(magenta);
-		AddLineSegment(new NLineSegment( 660, 960, 600, 960, 0xffff1000, 13));
+		AddLineSegment(new NLineSegment( 660, 960, 600, 960, 0x00000000, 13));
 		Paint yellow = new Paint(0xffff00);
 		yellow.SetXY(660 - 60, 960 - 42);
 		_objects.Add(yellow);
