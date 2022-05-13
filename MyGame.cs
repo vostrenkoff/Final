@@ -35,7 +35,7 @@ public class MyGame : Game
 	public void DrawLine(Vec2 start, Vec2 end) {
 		//_lineContainer.graphics.DrawLine(Pens.White, start.x, start.y, end.x, end.y);
 	}
-
+	Sprite hh;
 	public MyGame() : base(1920, 1080, false, false)
 	{
 		placingsnd = new Sound("placing.wav", false, false);
@@ -48,7 +48,8 @@ public class MyGame : Game
 		AddChild(sp);
 		targetFps = 60;
 
-		
+		hh = new Sprite("menu.png");
+		AddChildAt(hh,-1);
 
 
 		_moversPlayer = new List<Player>();
@@ -63,6 +64,7 @@ public class MyGame : Game
 	private void StartGame()
 	{
 		LoadScene(1);
+		hh.Destroy();
 	}
 	public void Level1Lines()
 	{
