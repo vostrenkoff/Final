@@ -54,13 +54,13 @@ namespace GXPEngine
 			}
 			else if (color == 2)
 			{
-				pColor[1] = 1;
+				pColor[2] = 1;
 				R += 255;
 				B += 255;
 			}
 			else if(color == 3)
 			{
-				pColor[2] = 1;
+				pColor[1] = 1;
 				R += 255;
 				G += 255;
 			}
