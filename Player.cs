@@ -318,7 +318,7 @@ public class Player : EasyDraw
 		{
 			int[] playerColor = SpritePlayer.pColor;
 			//vyan + yellow         green
-			if (line.lineWidth == 4 && line.color == 0xffffffff && playerColor[0] == 1 && playerColor[2] == 1)
+			if (line.lineWidth == 4 && line.color == 0xffffffff && playerColor[0] == 1 && playerColor[2] == 1 &&playerColor[1] == 0)
 			{
 				if (MyGame._switch)
 				{
@@ -335,7 +335,7 @@ public class Player : EasyDraw
 				}
 			}
 			//magenta + yellow         brown
-			if (line.lineWidth == 4 && line.color == 0xffff2000 && playerColor[1] == 1 && playerColor[2] == 1)
+			if (line.lineWidth == 4 && line.color == 0xffff2000 && playerColor[1] == 1 && playerColor[2] == 1 )
 			{
 				if (MyGame._switch)
 				{
