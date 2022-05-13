@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GXPEngine
 {
-	internal class Tarelka : AnimationSprite
+	public class Tarelka : AnimationSprite
 	{
 		public Tarelka():base("win.png", 3, 2)
 		{
