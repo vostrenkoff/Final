@@ -17,7 +17,6 @@ namespace GXPEngine
 		Button menuExit;
 		bool showStarCount = false;
 		Text starText;
-		AnimationSprite anim;
 		public UI()
 		{
 			ES.current.onGameOver += ShowGameOverMenu;
@@ -49,8 +48,8 @@ namespace GXPEngine
 		private void ShowWinMenu()
 		{
 			gameOverText = new Text(500, 500, 1920 / 2, 1080 / 2, "You won", 30);
-			anim = new AnimationSprite("win.png", 3, 2);
-			anim.SetCycle(0, 6);
+			Tarelka t = new Tarelka();
+			AddChild(t);
 		}
 		private void ShowMenu()
 		{
@@ -73,7 +72,6 @@ namespace GXPEngine
 		}
 		private void Update()
 		{
-			anim.Animate();
 			if (showStarCount)
 			{
 				starText.UpdateText("Stars : " + ES.stars);
