@@ -172,6 +172,7 @@
     <Compile Include="Player.cs" />
     <Compile Include="SpritePlayer.cs" />
     <Compile Include="Star.cs" />
+    <Compile Include="Trampoline.cs" />
     <Compile Include="UI.cs" />
     <Compile Include="UIelements\Button.cs" />
     <Compile Include="UIelements\Text.cs" />

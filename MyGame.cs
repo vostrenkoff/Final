@@ -16,6 +16,7 @@ public class MyGame : Game
 	public static List<NLineSegment> lines;
 	public static List<Player> _moversPlayer;
 	public static List<Star> _stars;
+	public static List<Sprite> _objects;
 
 	public static bool _switch = false;
 	public static int placingTool = 0;
@@ -52,6 +53,7 @@ public class MyGame : Game
 		_moversBall = new List<Ball>();
 		lines = new List<NLineSegment>();
 		_stars = new List<Star>();
+		_objects = new List<Sprite>();
 
 
 	}
@@ -247,6 +249,11 @@ public class MyGame : Game
 			star.Destroy();
 		}
 		_stars.Clear();
+		foreach (var item in _objects)
+		{
+			item.Destroy();
+		}
+		_objects.Clear();
 
 		// create new scene:
 		switch (sceneNumber) {
@@ -310,6 +317,7 @@ public class MyGame : Game
 	static void Main() {
 		new MyGame().Start();
 	}
+	Trampoline floatingTrampoline;
 	void PlacingTool()
     {
 		if (Input.GetKeyDown(Key.SPACE))
@@ -317,6 +325,16 @@ public class MyGame : Game
 			placingTool += 1;
 			if (placingTool == 4)
 				placingTool = 0;
+			if (placingTool == 2)
+			{
+				floatingTrampoline = new Trampoline();
+				AddChild(floatingTrampoline);
+			}
+			else if(placingTool == 3)
+			{
+				RemoveChild(floatingTrampoline);
+				floatingTrampoline.Destroy();
+			}
 		}
 			float mx = Input.mouseX;
 			float my = Input.mouseY;
@@ -368,6 +386,7 @@ public class MyGame : Game
 		}
 		if (placingTool == 2)
 		{
+			floatingTrampoline.SetXY(mx - 35, my-30);
 			foreach (NLineSegment line in lines)
 			{
 				
@@ -434,6 +453,10 @@ public class MyGame : Game
 		{
 			GenerateJump(mx, my, 25f);
 			ES.stars--;
+			Trampoline tramp = new Trampoline();
+			tramp.SetXY(mx - 35, my-30);
+			AddChild(tramp);
+			_objects.Add(tramp);
 			//Console.WriteLine(mx + "-" + my);
 		}
 		if (Input.GetKeyDown(Key.LEFT_CTRL) && placingTool == 3 && ES.stars > 0)
